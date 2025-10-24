@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import LOGO from '@assets/images/logo.svg';
 
-const Logo = ({ width = '15.78vw', height = '4.33vw' }) => {
+const Logo = ({ width = '62px', height = '17px' }) => {
   const navigate = useNavigate();
 
   return (
