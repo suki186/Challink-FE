@@ -1,0 +1,12 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as m;
+
+.buttonContainer {
+  @include m.flex-row-center;
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  background-color: $color-white;
+  border: 1.5px solid $main-color1;
+  margin-left: 6px;
+}
