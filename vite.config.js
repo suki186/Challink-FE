@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -38,6 +39,7 @@ export default defineConfig({
         ],
       },
     }),
+    svgr(),
   ],
   server: { port: 5137 },
   preview: { port: 5137 },
