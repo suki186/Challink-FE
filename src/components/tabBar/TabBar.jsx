@@ -7,7 +7,10 @@ import CreateChallengeBtn from './CreateChallengeBtn';
 const TabBar = () => {
   return (
     <div className={s.tabBarWrapper}>
+      {/* 챌린지 생성 버튼 */}
       <CreateChallengeBtn className={s.createChallengeBtn} />
+
+      {/* 탭바 Body */}
       <svg
         viewBox="0 0 349 68"
         width="349"
@@ -38,6 +41,8 @@ const TabBar = () => {
           filter="url(#tabBarShadow)"
         />
       </svg>
+
+      {/* 홈, 마이 아이콘 -> 나중에 클릭 여부에 따라 아이콘 변경 예정 */}
       <div className={s.tabIcons}>
         <div className={s.tabIcon}>
           <img src={HOME} width="18px" height="22px" />

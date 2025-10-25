@@ -9,10 +9,10 @@
   // 챌린지 생성 버튼
   .createChallengeBtn {
     position: absolute;
-
     top: 10px;
-    left: 49.25%;
-    transform: translateX(-50%);
+    left: 42.25%;
+
+    z-index: 2;
   }
 
   // 홈, 마이 아이콘
@@ -26,6 +26,7 @@
 
     .tabIcon {
       @include m.flex-column-center;
+      @include m.button-click;
       gap: 5px;
       width: 60px;
       height: 49px;
