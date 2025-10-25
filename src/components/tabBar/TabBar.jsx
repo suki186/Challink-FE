@@ -11,12 +11,31 @@ const TabBar = () => {
       <svg
         viewBox="0 0 349 68"
         width="349"
-        height="68"
+        height="88"
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMax meet"
       >
+        <defs>
+          <filter
+            id="tabBarShadow"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+          >
+            <feDropShadow
+              dx="2"
+              dy="-4"
+              stdDeviation="3"
+              floodColor="#4300D1"
+              floodOpacity="0.05"
+            />
+          </filter>
+        </defs>
         <path
           d="M134 0C138.418 0 142 3.58172 142 8V9C142 22.4632 146.804 52.3345 177.25 52.4971C202.613 52.3616 210.18 31.6097 212 16.9004V8C212 3.58175 215.582 0 220 0H341C345.418 0 349 3.58175 349 8V52C349 60.8366 341.837 68 333 68H16C7.16344 68 0 60.8366 0 52V8C2.07779e-06 3.58172 3.58172 0 8 0H134Z"
           fill="white"
+          filter="url(#tabBarShadow)"
         />
       </svg>
       <div className={s.tabIcons}>

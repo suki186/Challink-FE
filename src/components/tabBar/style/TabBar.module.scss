@@ -2,54 +2,39 @@
 @use '../../../styles/mixins' as m;
 
 .tabBarWrapper {
-  position: relative;
+  @include m.flex-column-center;
   width: 100%;
-  height: 68px;
+  position: relative;
 
-  svg {
+  // 챌린지 생성 버튼
+  .createChallengeBtn {
     position: absolute;
-    bottom: 0;
+
+    top: 10px;
+    left: 49.25%;
+    transform: translateX(-50%);
+  }
+
+  // 홈, 마이 아이콘
+  .tabIcons {
+    position: absolute;
+    bottom: 8px;
     left: 0;
     width: 100%;
-    height: 68px;
-  }
-}
+    @include m.flex-row-center;
+    gap: 150px;
 
-.tabIcons,
-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+    .tabIcon {
+      @include m.flex-column-center;
+      gap: 5px;
+      width: 60px;
+      height: 49px;
+    }
 
-.createChallengeBtn {
-  position: absolute;
-  top: 25%;
-  left: 49.25%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.tabIcons {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  @include m.flex-row-center;
-  gap: 170px;
-
-  .tabIcon {
-    @include m.flex-column-center;
-    gap: 5px;
-    width: 53px;
-    height: 49px;
-  }
-
-  .tabText {
-    font-size: 12px;
-    font-weight: 600;
-    color: $main-color2;
+    .tabText {
+      font-size: 12px;
+      font-weight: 600;
+      color: $main-color2;
+    }
   }
 }
