@@ -36,6 +36,6 @@
 
   .innderText {
     @include m.primary-gradient-text;
-    @include m.font-size-weight(20px, 500);
+    @include m.font-size-weight(20px, 600);
   }
 }
