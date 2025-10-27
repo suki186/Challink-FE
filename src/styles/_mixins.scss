@@ -1,9 +1,10 @@
 @use './variables' as *;
 
-// 폰트 크기, 두께
-@mixin font-size-weight($size: 12, $weight: 500) {
+// 폰트 크기, 두께, 줄간격
+@mixin font-size-weight($size: 12, $weight: 500, $line-height: 1.4) {
   font-size: $size;
   font-weight: $weight;
+  line-height: $line-height;
 }
 
 // 가로 방향(row) + 수직/수평 중앙 정렬
