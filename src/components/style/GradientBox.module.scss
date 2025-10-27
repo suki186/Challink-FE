@@ -7,4 +7,9 @@
   @include m.primary-gradient;
   box-shadow: 0px 4px 10px 0px rgba(67, 0, 209, 0.06);
   color: $gray-white;
+
+  p {
+    white-space: pre-line;
+    text-align: center;
+  }
 }
