@@ -22,6 +22,17 @@
       "entry_fee": 50000,
       "member_count": 3,
       "cover_image": "/media/challenges/22.jpg"
+    },
+    {
+      "id": 31,
+      "title": "📚 매일매일 독서 챌린지",
+      "description": "하루에 한 번 책 읽기 인증",
+      "category": "생활",
+      "duration_weeks": 4,
+      "freq_type": "주3일",
+      "entry_fee": 10000,
+      "member_count": 3,
+      "cover_image": "/media/challenges/22.jpg"
     }
   ]
 }
