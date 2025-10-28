@@ -2,13 +2,34 @@
 @use '../../styles/variables' as *;
 
 .challengePageContainer {
+  position: relative;
   @include m.flex-column-center(flex-start, center, 24px);
   padding-top: 64px;
 }
 
 .challengeBody {
+  position: relative;
+  overflow: hidden;
   @include m.flex-column-center(flex-start, center, 6px);
   width: 100%;
   background-color: $main-color2;
   border-radius: 12px 12px 0 0;
+}
+
+.circle {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 250px;
+  border-radius: 50%;
+  background: $main-color1;
+  filter: blur(200px);
+  z-index: 1;
+}
+
+.contents {
+  position: relative;
+  z-index: 10; // 최상위
 }

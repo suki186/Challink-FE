@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import s from './ChallengePage.module.scss';
 import ChallengeTitle from './components/ChallengeTitle.jsx';
 import OngoingChallenge from './components/ongoingChallenge/OngoingChallenge.jsx';
+import VerifyChallenge from './components/verifyChallenge/VerifyChallenge.jsx';
 
 const ChallengePage = ({ height = '672px' }) => {
   return (
@@ -13,7 +14,11 @@ const ChallengePage = ({ height = '672px' }) => {
       />
 
       <div className={s.challengeBody} style={{ height }}>
-        <OngoingChallenge />
+        <div className={s.circle}></div>
+        <div className={s.contents}>
+          {/* <VerifyChallenge /> */}
+          <OngoingChallenge />
+        </div>
       </div>
     </div>
   );
