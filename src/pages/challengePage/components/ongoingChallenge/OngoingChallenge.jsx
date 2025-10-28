@@ -21,6 +21,18 @@ const todayPhotos = [
 ];
 
 const OngoingChallenge = () => {
+  const inviteCode = 'FDFsFE23sRE';
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteCode);
+      alert('초대코드가 복사되었습니다!');
+    } catch (err) {
+      console.error('복사 실패:', err);
+      alert('복사에 실패했습니다');
+    }
+  };
+
   return (
     <div className={s.todayChallenge}>
       <section className={s.challengeTop}>
@@ -37,8 +49,13 @@ const OngoingChallenge = () => {
         <div className={s.challengePeriod}>
           <p>2025.10.01 ~ 2025.10.08</p>
           <div className={s.invitedCode}>
-            <p>초대코드: FDFsFE34sRE</p>
-            <IconButton src={DUPLICATE} alt="복사아이콘" width="16px" />
+            <p>초대코드: {inviteCode}</p>
+            <IconButton
+              src={DUPLICATE}
+              alt="복사아이콘"
+              width="16px"
+              onClick={handleCopy}
+            />
           </div>
         </div>
       </section>

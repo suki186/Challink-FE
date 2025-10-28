@@ -16,8 +16,8 @@ const ChallengePage = ({ height = '672px' }) => {
       <div className={s.challengeBody} style={{ height }}>
         <div className={s.circle}></div>
         <div className={s.contents}>
-          {/* <VerifyChallenge /> */}
-          <OngoingChallenge />
+          <VerifyChallenge />
+          {/* <OngoingChallenge /> */}
         </div>
       </div>
     </div>

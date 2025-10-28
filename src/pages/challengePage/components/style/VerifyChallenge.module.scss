@@ -13,12 +13,19 @@
   }
 
   .verifyCondition {
-    @include m.flex-row-center(center, center, 4px);
+    width: 330px;
+    @include m.flex-row-center(center, center, 5px);
     margin-top: 15px;
 
-    p {
+    p,
+    input.conditionInput {
       @include m.font-size-weight(16px);
       color: $gray-white;
+      text-align: center;
+      margin: 0;
+      background: transparent;
+      border: none;
+      outline: none;
     }
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from '../style/VerifyChallenge.module.scss';
 import GradientBox from '../../../../components/GradientBox';
 import UploadPhoto from './UploadPhoto';
@@ -6,6 +6,18 @@ import IconButton from '../../../../components/IconButton';
 import EDIT from '@assets/images/icons/edit_icon.svg';
 
 const VerifyChallenge = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [conditionText, setConditionText] = useState('책 페이지 번호 + 손가락 브이');
+
+  // 수정 중이면 저장, 아니면 수정 시작
+  const handleEditIcon = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleChange = (e) => {
+    setConditionText(e.target.value);
+  };
+
   return (
     <div className={s.verifyChallenge}>
       {/* 응원 메세지 */}
@@ -24,8 +36,18 @@ const VerifyChallenge = () => {
 
       {/* 인증 조건 */}
       <div className={s.verifyCondition}>
-        <p>책 페이지 번호 + 손가락 브이</p>
-        <IconButton src={EDIT} alt="편집" width="12px" />
+        {isEditing ? (
+          <input
+            type="text"
+            value={conditionText}
+            onChange={handleChange}
+            className={s.conditionInput}
+            autoFocus
+          />
+        ) : (
+          <p>{conditionText}</p>
+        )}
+        <IconButton src={EDIT} alt="편집" width="12px" onClick={handleEditIcon} />
       </div>
     </div>
   );
