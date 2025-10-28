@@ -1,0 +1,13 @@
+@use '../../../../styles/mixins' as m;
+@use '../../../../styles/variables' as *;
+
+.uploadPhotoContainer {
+  @include m.flex-column-center(center, center, 22px);
+
+  .photo {
+    width: 241px;
+    height: 291px;
+    background-color: $color-white;
+    border-radius: 8px;
+  }
+}
