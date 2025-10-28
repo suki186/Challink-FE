@@ -1,0 +1,15 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as m;
+
+.buttonContainer {
+  @include m.flex-row-center;
+  @include m.button-click;
+
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  background-color: $color-white;
+  border: 2px solid $main-color1;
+  margin-left: 6px;
+  box-shadow: 0 0 8px 3px rgba(#4300d1, 0.1);
+}

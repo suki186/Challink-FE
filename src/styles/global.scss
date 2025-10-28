@@ -1,0 +1,39 @@
+//@use './variables' as *;
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+/* 기본 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Pretendard, 'Arial', Helvetica, sans-serif;
+}
+
+:root {
+  --vh: 100%;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #c8c8c8; // 개발용: ffffff으로 변경 예정
+}
+
+/* 중앙 393px 영역 */
+#root {
+  max-width: 393px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background-color: #fffffc;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 스크롤이 필요한 특정 페이지 */
+.scrollable {
+  overflow-y: auto;
+}

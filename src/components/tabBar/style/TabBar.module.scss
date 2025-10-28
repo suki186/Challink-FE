@@ -1,0 +1,41 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as m;
+
+.tabBarWrapper {
+  @include m.flex-column-center;
+  width: 100%;
+  position: relative;
+
+  // 챌린지 생성 버튼
+  .createChallengeBtn {
+    position: absolute;
+    top: 10px;
+    left: 42.25%;
+
+    z-index: 2;
+  }
+
+  // 홈, 마이 아이콘
+  .tabIcons {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    @include m.flex-row-center;
+    gap: 150px;
+
+    .tabIcon {
+      @include m.flex-column-center;
+      @include m.button-click;
+      gap: 5px;
+      width: 60px;
+      height: 49px;
+    }
+
+    .tabText {
+      font-size: 12px;
+      font-weight: 600;
+      color: $main-color2;
+    }
+  }
+}
