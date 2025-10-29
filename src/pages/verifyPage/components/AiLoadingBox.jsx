@@ -1,7 +1,7 @@
 import React from 'react';
 import s from '../style/AiLoadingBox.module.scss';
 import Bubble from './Bubble';
-import useEllipsis from '../../../../hooks/useEllipsis';
+import useEllipsis from '../../../hooks/useEllipsis';
 import CHAR from '@assets/images/character.png';
 
 const AILoadingBox = () => {

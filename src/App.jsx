@@ -1,19 +1,16 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-  Navigate,
-} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, Navigate } from 'react-router-dom';
 import '@styles/global.scss';
 import LoginPage from './pages/loginPage/LoginPage';
 import SignupPage from './pages/signupPage/SignupPage';
 import Layout from './components/layout/Layout';
 import MainPage from './pages/mainPage/MainPage';
 import CreateChallengePage from './pages/createChallengePage/CreateChallengePage';
-import ChallengePage from './pages/challengePage/ChallengePage';
-import VerifyPage from './pages/verifyPage/VerifyPage';
-import PhotosPage from './pages/photosPage/PhotosPage';
 import MyPage from './pages/myPage/MyPage';
 import NotFoundPage from './pages/notFoundPage/NotFoundPage';
+import ChallengeLayout from './pages/challengeLayout/ChallengeLayout';
+import OngoingPage from './pages/ongoingPage/OngoingPage';
+import VerifyPage from './pages/verifyPage/VerifyPage';
+import PhotosPage from './pages/photosPage/PhotosPage';
 
 /*
     LoginPage: 로그인 페이지
@@ -21,8 +18,6 @@ import NotFoundPage from './pages/notFoundPage/NotFoundPage';
     MainPage: 메인 페이지
     CreateChallengePage: 챌린지 생성 페이지
     ChallengePage: 챌린지 참여전, 진행중, 완료 페이지를 조건부 처리
-    VerifyPage: 사진 인증 페이지
-    PhotosPage: 챌린지별 도전앨범 페이지
     MyPage: 마이 페이지
     NotFoundPage: 404 페이지
 */
@@ -44,8 +39,9 @@ const router = createBrowserRouter([
       // 챌린지 단일 라우트
       {
         path: 'challenge/:id',
-        element: <ChallengePage />,
+        element: <ChallengeLayout />,
         children: [
+          { index: true, element: <OngoingPage /> },
           { path: 'verify', element: <VerifyPage /> },
           { path: 'photos', element: <PhotosPage /> },
         ],

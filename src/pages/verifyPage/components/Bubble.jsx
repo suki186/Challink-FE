@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../style/Bubble.module.scss';
+import s from './style/Bubble.module.scss';
 
 // 말풍선
 const Bubble = ({ width, height, text, fontSize }) => {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import s from '../style/VerifyChallenge.module.scss';
-import GradientBox from '../../../../components/GradientBox';
+import s from './style/VerifyChallenge.module.scss';
+import GradientBox from '../../../components/GradientBox';
 import UploadPhoto from './UploadPhoto';
-import IconButton from '../../../../components/IconButton';
+import IconButton from '../../../components/IconButton';
 import EDIT from '@assets/images/icons/edit_icon.svg';
 
 const VerifyChallenge = () => {

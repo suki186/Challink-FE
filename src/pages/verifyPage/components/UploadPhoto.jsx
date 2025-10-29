@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import s from '../style/UploadPhoto.module.scss';
-import GradientButton from '../../../../components/GradientButton';
+import s from './style/UploadPhoto.module.scss';
+import GradientButton from '../../../components/GradientButton';
 import CHAR from '@assets/images/character.png';
 import Bubble from './Bubble';
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import ChallengeBody from '../challengeLayout/ChallengeBody';
-import VerifyChallenge from './components/VerifyChallenge';
+import OngoingChallenge from './components/OngoingChallenge';
 
-const VerifyPage = () => {
+const OngoingPage = () => {
   return (
     <ChallengeBody height="672px">
-      <VerifyChallenge />
+      <OngoingChallenge />
     </ChallengeBody>
   );
 };
 
-export default VerifyPage;
+export default OngoingPage;

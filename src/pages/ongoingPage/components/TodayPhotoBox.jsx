@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../style/TodayPhotoBox.module.scss';
+import s from './style/TodayPhotoBox.module.scss';
 
 const TodayPhotoBox = ({ name, src }) => {
   return (

@@ -1,14 +1,14 @@
 // 참여 중인 챌린지 상세 페이지
 import React from 'react';
-import s from '../style/OngoingChallenge.module.scss';
-import GradientBox from '../../../../components/GradientBox';
-import GradientButton from '../../../../components/GradientButton';
+import s from './style/OngoingChallenge.module.scss';
+import GradientBox from '../../../components/GradientBox';
+import GradientButton from '../../../components/GradientButton';
 import FIRE from '@assets/images/icons/fire_icon.svg';
 import DUPLICATE from '@assets/images/icons/duplicate_icon.svg';
 import BOOK from '@assets/images/book_ex.jpg';
 import NOPHOTO from '@assets/images/no_photo.png';
 
-import IconButton from '../../../../components/IconButton';
+import IconButton from '../../../components/IconButton';
 import TodayPhotoBox from './TodayPhotoBox';
 
 const todayPhotos = [
@@ -37,12 +37,7 @@ const OngoingChallenge = () => {
     <div className={s.todayChallenge}>
       <section className={s.challengeTop}>
         {/* 성공한 사람 수, 오늘 날짜 */}
-        <GradientBox
-          width="150px"
-          height="38px"
-          text="6명 중 3명 성공!"
-          borderRadius="20000px"
-        />
+        <GradientBox width="150px" height="38px" text="6명 중 3명 성공!" borderRadius="20000px" />
         <p>2025.10.06 함께하는 챌린저들은?</p>
 
         {/* 챌린지 기간, 초대 코드 */}
@@ -50,12 +45,7 @@ const OngoingChallenge = () => {
           <p>2025.10.01 ~ 2025.10.08</p>
           <div className={s.invitedCode}>
             <p>초대코드: {inviteCode}</p>
-            <IconButton
-              src={DUPLICATE}
-              alt="복사아이콘"
-              width="16px"
-              onClick={handleCopy}
-            />
+            <IconButton src={DUPLICATE} alt="복사아이콘" width="16px" onClick={handleCopy} />
           </div>
         </div>
       </section>
