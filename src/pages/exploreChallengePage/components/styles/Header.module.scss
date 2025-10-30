@@ -1,0 +1,30 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.headerContainer {
+  @include m.flex-column-center(center, flex-start, 12px);
+  width: 100%;
+
+  .headerTop {
+    @include m.flex-row-center(flex-start, center, 10.8px);
+    margin: 20px 0 0 24px;
+    .backButton {
+      border: none;
+      background: none;
+      height: 28px;
+
+      padding: 6px 0;
+    }
+    .backIcon {
+      width: 16px;
+      height: 16px;
+    }
+    .title {
+      @include m.font-size-weight(20px, 600, 1.4);
+      color: $main-color2;
+    }
+  }
+  .headerBottom {
+    margin: 0 24px;
+  }
+}
