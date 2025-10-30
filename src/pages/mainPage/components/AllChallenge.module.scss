@@ -8,7 +8,7 @@
 
     .title {
       @include m.font-size-weight(20px, 600, 28px);
-      color: $color-black;
+      color: $main-color2;
     }
   }
   .moreButton {
