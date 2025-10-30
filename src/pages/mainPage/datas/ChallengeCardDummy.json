@@ -1,0 +1,38 @@
+{
+  "count": 2,
+  "results": [
+    {
+      "id": 21,
+      "title": "💪 헬스장 인증해요",
+      "description": "일주일에 3번만 꾸준하게",
+      "category": "생활",
+      "duration_weeks": 4,
+      "freq_type": "주 3일",
+      "entry_fee": 10000,
+      "member_count": 3,
+      "cover_image": "./21.png"
+    },
+    {
+      "id": 22,
+      "title": "🏋️‍♀️ 헬스장 주5일팟 모집",
+      "description": "일주일에 5번 빡세게 할 분만 가입바람",
+      "category": "운동",
+      "duration_weeks": 2,
+      "freq_type": "주 5일",
+      "entry_fee": 50000,
+      "member_count": 3,
+      "cover_image": "/media/challenges/22.jpg"
+    },
+    {
+      "id": 31,
+      "title": "📚 매일매일 독서 챌린지",
+      "description": "하루에 한 번 책 읽기 인증",
+      "category": "생활",
+      "duration_weeks": 4,
+      "freq_type": "주3일",
+      "entry_fee": 10000,
+      "member_count": 3,
+      "cover_image": "/media/challenges/22.jpg"
+    }
+  ]
+}
