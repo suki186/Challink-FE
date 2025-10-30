@@ -1,9 +1,10 @@
 @use './variables' as *;
 
-// 폰트 크기, 두께
-@mixin font-size-weight($size: 12, $weight: 500) {
+// 폰트 크기, 두께, 줄간격
+@mixin font-size-weight($size: 12px, $weight: 500, $line-height: 14px) {
   font-size: $size;
   font-weight: $weight;
+  line-height: $line-height;
 }
 
 // 가로 방향(row) + 수직/수평 중앙 정렬
@@ -59,6 +60,16 @@
   text-overflow: ellipsis;
   display: block;
   max-width: 100%;
+}
+
+// 스크롤바 숨기기 (스크롤 기능은 유지)
+@mixin hide-scrollbar() {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
 }
 
 // 자주 쓰는 구조 있으면 추가

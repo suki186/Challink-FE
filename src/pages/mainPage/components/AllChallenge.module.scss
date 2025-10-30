@@ -1,0 +1,110 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as m;
+
+.allChallengeContainer {
+  .header {
+    @include m.flex-row-center(space-between, flex-end, null);
+    margin: 62px 24px 12px 24px;
+
+    .title {
+      @include m.font-size-weight(20px, 600, 28px);
+      color: $color-black;
+    }
+  }
+  .moreButton {
+    @include m.flex-row-center(flex-start, center, 5px);
+    @include m.font-size-weight(12px, 400, 16px);
+    color: $gray-500;
+    background: none;
+    border: none;
+  }
+  .moreIcon {
+    width: 10px;
+    height: 10px;
+  }
+
+  .challengeList {
+    @include m.flex-row-center(flex-start, flex-start, 12px);
+    @include m.hide-scrollbar();
+    padding-left: 24px;
+    padding-bottom: 24px;
+    overflow-x: scroll;
+
+    .challengeItem {
+      flex-shrink: 0;
+      width: 140px;
+      height: 180px;
+      box-shadow: 8px 8px 12px rgba(67, 0, 209, 0.05);
+      border-radius: 0 0 12px 12px;
+
+      &:last-child {
+        // 마지막 Item에만 우측 여백
+        margin-right: 24px;
+      }
+    }
+
+    .coverImage {
+      display: block;
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .contentBox {
+      @include m.flex-column-center(flex-start, flex-start, 4px);
+      margin: 12px 10px 8px 12px;
+      width: 120px;
+      height: 60px;
+
+      .challengeTitle {
+        @include m.font-size-weight(12px, 500, 16px);
+        @include m.text-ellipsis();
+        width: 100%;
+      }
+    }
+  }
+
+  .metaList {
+    @include m.flex-row-center(flex-start, flex-start, 4px);
+    flex-wrap: wrap; // 줄바꿈 허용
+
+    li {
+      @include m.font-size-weight(10px, 400);
+      @include m.text-ellipsis();
+      color: #828b9d;
+      list-style: none;
+      background-color: #f4f4f4;
+      border-radius: 2px;
+      padding: 2px 4px;
+    }
+  }
+}
+// <section className={s.allChallengeContainer}>
+// {/* 상단 타이틀 영역 */}
+// <header className={s.header}>
+//   <h2 className={s.title}>모든 챌린지</h2>
+//   <button className={s.viewAllButton}>더보기</button>
+// </header>
+
+// {/* 챌린지 리스트 */}
+// <div className={s.challengeList}>
+//   {dummyData.results.map((c) => (
+//     <article key={c.id} className={s.challengeItem}>
+//       <div className={s.coverImageBox}>
+//         <img src={img22} className={s.coverImage} />
+//       </div>
+//       <div className={s.contentBox}>
+//         <h3 className={s.challengeTitle}>{c.title}</h3>
+//         <ul className={s.metaList}>
+//           <li>{c.duration_weeks}주 동안</li>
+//           <li>{c.freq_type}</li>
+//           <li>{c.entry_fee}p</li>
+//           <li>{c.category}</li>
+//           <li>{c.member_count}명</li>
+//         </ul>
+//       </div>
+//     </article>
+//   ))}
+// </div>
+// </section>
