@@ -37,3 +37,19 @@ body {
 .scrollable {
   overflow-y: auto;
 }
+
+/* 스크롤바 전체 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* 스크롤바 트랙 */
+::-webkit-scrollbar-track {
+  border-radius: 2000px;
+}
+
+/* 스크롤바 썸 */
+::-webkit-scrollbar-thumb {
+  background: #b9b9b9;
+  border-radius: 2000px;
+}
