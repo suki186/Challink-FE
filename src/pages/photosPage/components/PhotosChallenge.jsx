@@ -2,7 +2,7 @@ import React from 'react';
 import s from './style/PhotosChallenge.module.scss';
 import CHAR from '@assets/images/character.png';
 
-const PhotosChallenge = ({ photoData }) => {
+const PhotosChallenge = ({ photoData, onPhotoClick }) => {
   if (!photoData || !photoData.data || photoData.data.length === 0) {
     return (
       <div className={s.noPhotos}>
@@ -20,6 +20,7 @@ const PhotosChallenge = ({ photoData }) => {
           className={s.onePhoto}
           src={photo.image_url}
           alt={photo.photo_id}
+          onClick={() => onPhotoClick(photo)}
         />
       ))}
     </div>

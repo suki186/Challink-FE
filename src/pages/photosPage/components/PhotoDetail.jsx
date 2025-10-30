@@ -4,7 +4,7 @@ import EX from '@assets/images/no_photo.png';
 import CANCLE from '@assets/images/icons/cancel_icon.svg';
 import IconButton from '../../../components/IconButton';
 
-const PhotoDetail = () => {
+const PhotoDetail = ({ onClose }) => {
   return (
     <div className={s.photoDetailContainer}>
       {/* 이름, 날짜, x버튼 */}
@@ -13,7 +13,7 @@ const PhotoDetail = () => {
           <p className={s.tag}>김한성</p>
           <p className={s.tag}>2025.10.02.</p>
         </div>
-        <IconButton src={CANCLE} alt="취소" width="20px" />
+        <IconButton src={CANCLE} alt="취소" width="20px" onClick={onClose} />
       </div>
       <img src={EX} alt="사진" width="100%" height="408px" />
     </div>
