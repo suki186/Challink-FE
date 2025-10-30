@@ -3,7 +3,7 @@
 
 .challengePageContainer {
   position: relative;
-  @include m.flex-column-center(flex-start, center, 24px);
+  @include m.flex-column-center(flex-start, center, 22px);
   padding-top: 64px;
 }
 
@@ -14,6 +14,7 @@
   width: 100%;
   background-color: $main-color2;
   border-radius: 12px 12px 0 0;
+  overflow-y: scroll;
 }
 
 .circle {
