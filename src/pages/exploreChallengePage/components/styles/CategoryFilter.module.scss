@@ -1,0 +1,22 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.categoryFilter {
+  @include m.flex-row-center(flex-start, center, 12px);
+  margin: 12px 0 22px 24px;
+  flex-wrap: wrap;
+}
+
+.categoryButton {
+  @include m.font-size-weight(14px, 400, 20px);
+  color: $main-color2;
+  background-color: $gray-100;
+  border: none;
+  border-radius: 9999px;
+  padding: 6px 15px;
+}
+
+.categoryButtonActive {
+  background: linear-gradient(123deg, #ff3f3e 46%, #ff7b7b 100%);
+  color: $color-white;
+}
