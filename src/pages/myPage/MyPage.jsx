@@ -1,12 +1,7 @@
 import React from 'react';
-import PhotoDetail from '../photosPage/components/PhotoDetail';
 
 const MyPage = () => {
-  return (
-    <div>
-      <PhotoDetail />
-    </div>
-  );
+  return <div>MyPage</div>;
 };
 
 export default MyPage;

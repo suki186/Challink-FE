@@ -30,3 +30,27 @@
     box-shadow: 8px 8px 8px 0px rgba(67, 0, 209, 0.06);
   }
 }
+
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  height: 408px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// 클릭을 감지할 투명 오버레이
+.commentOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair; // + 커서
+  z-index: 10;
+}

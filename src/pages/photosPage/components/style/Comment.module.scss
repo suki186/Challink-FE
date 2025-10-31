@@ -11,6 +11,10 @@
 
   backdrop-filter: blur(10px);
   border: 1px solid #828b9d;
+
+  &.itemPopup {
+    display: block;
+  }
 }
 
 .commentTextarea {
@@ -27,4 +31,12 @@
   &::placeholder {
     color: $gray-400;
   }
+}
+
+.commentItemText {
+  @include m.font-size-weight(10px, 500);
+  color: $color-black;
+
+  white-space: pre-wrap;
+  word-break: break-word;
 }
