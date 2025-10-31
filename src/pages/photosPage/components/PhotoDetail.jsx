@@ -5,93 +5,30 @@ import CANCLE from '@assets/images/icons/cancel_icon.svg';
 import IconButton from '../../../components/IconButton';
 import CommentInput from './CommentInput';
 import CommentItem from './CommentItem';
+import { useClickPosition } from '../../../hooks/useClickPosition';
+import { useCommentPositioning } from '../../../hooks/useCommentPositioning';
 
 const PhotoDetail = ({ onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const [inputPos, setInputPos] = useState(null);
   const containerRef = useRef(null); // 사진 영역 Ref
 
-  // 클릭 좌표 계산
-  const handleClick = (e) => {
-    if (!containerRef.current || e.target !== containerRef.current) return;
+  // 클릭 위치 로직
+  const { clickedPos, handleClick, clearClickedPos } = useClickPosition(containerRef);
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const xRatio = (e.clientX - rect.left) / rect.width;
-    const yRatio = (e.clientY - rect.top) / rect.height;
-
-    setInputPos({ xRatio, yRatio });
-    setNewComment('');
-  };
+  // 스타일 계산 로직
+  const { calculateStyleProps } = useCommentPositioning(containerRef);
 
   // 댓글 등록
   const handleSubmit = () => {
-    if (!inputPos || !newComment.trim()) return;
-    setComments([...comments, { ...inputPos, text: newComment }]);
-    setInputPos(null);
+    if (!clickedPos || !newComment.trim()) return;
+    setComments([...comments, { ...clickedPos, text: newComment }]);
+    clearClickedPos();
     setNewComment('');
   };
 
-  // px 좌표 계산
-  const getPixelPosition = (pos) => {
-    if (!containerRef.current) return { top: 0, left: 0 };
-    const rect = containerRef.current.getBoundingClientRect();
-    return {
-      top: rect.top + pos.yRatio * rect.height + window.scrollY,
-      left: rect.left + pos.xRatio * rect.width + window.scrollX,
-    };
-  };
-
-  // 스타일 계산 로직
-  const calculateStyleProps = (pos, type = 'input') => {
-    if (!pos || !containerRef.current) return null;
-
-    const { top: clickTop, left: clickLeft } = getPixelPosition(pos);
-    const wrapperRect = containerRef.current.getBoundingClientRect();
-    const wrapperWidth = wrapperRect.width;
-
-    // 기본 너비(CommentInput)
-    const inputTotalWidth = wrapperWidth / 2;
-    let dynamicWidth;
-    let dynamicMaxWidth;
-
-    if (type === 'input') {
-      // Input: 고정 너비
-      dynamicWidth = `${inputTotalWidth}px`;
-      dynamicMaxWidth = `${inputTotalWidth}px`;
-    } else {
-      // Item: 너비 auto, 최대 너비만 버튼 뺌
-      const itemMaxWidth = inputTotalWidth - 19 - 11;
-
-      dynamicWidth = undefined; // fit-content
-      dynamicMaxWidth = `${itemMaxWidth}px`; // 최대 너비
-    }
-
-    const isRightSideClick = pos.xRatio > 0.5;
-    let dynamicTransform = '';
-    let dynamicRadius = '';
-
-    if (isRightSideClick) {
-      dynamicRadius = '8px 8px 0 8px';
-      dynamicTransform = 'translate(-100%, -100%)';
-    } else {
-      dynamicRadius = '8px 8px 8px 0';
-      dynamicTransform = 'translateY(-100%)';
-    }
-
-    return {
-      position: 'absolute',
-      top: clickTop,
-      left: clickLeft,
-      transform: dynamicTransform,
-      width: dynamicWidth,
-      maxWidth: dynamicMaxWidth,
-      borderRadius: dynamicRadius,
-    };
-  };
-
   // 입력창 스타일
-  const newCommentStyleProps = calculateStyleProps(inputPos, 'input');
+  const newCommentStyleProps = calculateStyleProps(clickedPos, 'input');
   if (newCommentStyleProps) {
     newCommentStyleProps.zIndex = 10000;
   }
@@ -121,7 +58,7 @@ const PhotoDetail = ({ onClose }) => {
         }
         return <CommentItem key={index} text={comment.text} styleProps={styleProps} />;
       })}
-      {inputPos && (
+      {clickedPos && (
         <CommentInput
           styleProps={newCommentStyleProps}
           value={newComment}
