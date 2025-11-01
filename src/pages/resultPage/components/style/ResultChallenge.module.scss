@@ -1,0 +1,23 @@
+@use '../../../../styles/mixins' as m;
+@use '../../../../styles/variables' as *;
+
+.resultChallengeContainer {
+  @include m.flex-column-center(center, center, 12px);
+  padding-top: 18px;
+
+  .moneyInfo {
+    @include m.flex-column-center(center, center, 8px);
+
+    p {
+      @include m.font-size-weight(12px, 400);
+      color: $gray-white;
+    }
+  }
+
+  .memberItems {
+    @include m.flex-column-center(flex-start, center, 16px);
+    width: 348px;
+    height: 356px;
+    margin-bottom: 28px;
+  }
+}
