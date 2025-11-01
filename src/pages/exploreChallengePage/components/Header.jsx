@@ -1,24 +1,24 @@
 import React from 'react';
-import s from './Header.module.scss';
 import { useNavigate } from 'react-router-dom';
-import Logo from '@components/Logo.jsx';
+import s from './styles/Header.module.scss';
+import chevron from '@assets/images/chevron_left_icon.svg';
 import SearchBar from '@components/searchBar/SearchBar.jsx';
 
 const Header = () => {
   const navigate = useNavigate();
+
   return (
     <div className={s.headerContainer}>
       <div className={s.headerTop}>
-        <Logo width="62px" height="17px" color="#FCFCFC" />
-        <button className={s.loginButton} onClick={() => navigate('/login')}>
-          로그인
+        <button className={s.backButton} onClick={() => navigate(-1)}>
+          <img src={chevron} alt="뒤로 가기 아이콘" className={s.backIcon} />
         </button>
+        <h2 className={s.title}>모든 챌린지</h2>
       </div>
-
       <div className={s.headerBottom}>
         <SearchBar
-          placeholder="초대코드로 참여하기"
-          backgroundColor="#FCFCFC"
+          placeholder="관심있는 챌린지를 검색해보세요!"
+          backgroundColor="#E9E9E9"
         />
       </div>
     </div>
