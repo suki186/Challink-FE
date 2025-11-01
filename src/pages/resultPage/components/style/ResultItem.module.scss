@@ -1,0 +1,43 @@
+@use '../../../../styles/mixins' as m;
+@use '../../../../styles/variables' as *;
+
+.resultItemContainer {
+  @include m.flex-column-center(center, flex-start, 4px);
+  width: 100%;
+  height: 46px;
+
+  .section1 {
+    @include m.flex-row-center;
+
+    .name {
+      @include m.font-size-weight(16px, 600);
+      color: $gray-white;
+      margin-right: 11px;
+    }
+  }
+
+  .section2 {
+    width: 100%;
+    @include m.flex-row-center(space-between, center);
+
+    .count,
+    .point {
+      @include m.font-size-weight(14px);
+      color: $gray-100;
+    }
+
+    .count {
+      width: 39px;
+    }
+    .point {
+      width: 85px;
+      text-align: right;
+    }
+
+    .statusBar {
+      width: 210px;
+      height: 14px;
+      background-color: green;
+    }
+  }
+}
