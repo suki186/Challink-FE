@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './ChallengeCard.module.scss';
+import s from './styles/ChallengeCard.module.scss';
 import dummyData from '../datas/ChallengeCardDummy.json';
 import img22 from '../datas/22.png';
 

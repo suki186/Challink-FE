@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './ChallengeModal.module.scss';
+import s from './styles/ChallengeModal.module.scss';
 import dummyData from '../datas/ChallengeModalDummy.json';
 import img23 from '../datas/23.png';
 import closeIcon from '../../../assets/images/icon_close.svg';
@@ -28,8 +28,7 @@ const ChallengeModal = () => {
         {/* 챌린지 상세 정보 카드 */}
         <div className={s.challengeInfoCard}>
           <h3 className={s.challengeInfo}>
-            {c.entry_fee.toLocaleString()}p 걸고 {c.duration_weeks}주 동안 매일
-            인증하기!
+            {c.entry_fee.toLocaleString()}p 걸고 {c.duration_weeks}주 동안 매일 인증하기!
           </h3>
 
           <div className={s.meta}>
@@ -38,8 +37,7 @@ const ChallengeModal = () => {
           </div>
 
           <p className={s.duration}>
-            {c.start_date.replaceAll('-', '.')} ~{' '}
-            {c.end_date.replaceAll('-', '.')}
+            {c.start_date.replaceAll('-', '.')} ~ {c.end_date.replaceAll('-', '.')}
           </p>
         </div>
       </section>

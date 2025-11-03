@@ -1,0 +1,92 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.allChallengeContainer {
+  .challengeList {
+    @include m.hide-scrollbar();
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 가로 2열
+    gap: 12px; // 카드 사이 여백
+    padding: 0 15.5px;
+    overflow-y: scroll;
+    padding-bottom: 24px;
+
+    .challengeItem {
+      @include m.flex-column-center(flex-start, flex-start, 10px);
+      flex-shrink: 0;
+      width: 175px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 8px 8px 12px rgba(67, 0, 209, 0.05);
+    }
+
+    .coverImage {
+      margin: 6px 6px 0 6px;
+      width: 163px;
+      height: 175px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid $gray-200;
+    }
+
+    .contentBox {
+      @include m.flex-column-center(flex-start, flex-start, 4px);
+      margin: 0 10px 6px 10px;
+      width: 155px;
+      height: auto;
+
+      .challengeTitle {
+        @include m.font-size-weight(12px, 500, 16px);
+        @include m.text-ellipsis();
+        width: 100%;
+      }
+      .challengeSubtitle {
+        @include m.font-size-weight(12px, 400, 17px);
+        @include m.text-ellipsis();
+        width: 100%;
+      }
+    }
+  }
+
+  .metaList {
+    @include m.flex-row-center(flex-start, flex-start, 4px);
+    flex-wrap: wrap; // 줄바꿈 허용
+    li {
+      @include m.font-size-weight(10px, 400);
+      @include m.text-ellipsis();
+      color: #828b9d;
+      list-style: none;
+      background-color: #f4f4f4;
+      border-radius: 2px;
+      padding: 2px 4px;
+    }
+  }
+}
+// <section className={s.allChallengeContainer}>
+// {/* 상단 타이틀 영역 */}
+// <header className={s.header}>
+//   <h2 className={s.title}>모든 챌린지</h2>
+//   <button className={s.viewAllButton}>더보기</button>
+// </header>
+
+// {/* 챌린지 리스트 */}
+// <div className={s.challengeList}>
+//   {dummyData.results.map((c) => (
+//     <article key={c.id} className={s.challengeItem}>
+//       <div className={s.coverImageBox}>
+//         <img src={img22} className={s.coverImage} />
+//       </div>
+//       <div className={s.contentBox}>
+//         <h3 className={s.challengeTitle}>{c.title}</h3>
+//         <ul className={s.metaList}>
+//           <li>{c.duration_weeks}주 동안</li>
+//           <li>{c.freq_type}</li>
+//           <li>{c.entry_fee}p</li>
+//           <li>{c.category}</li>
+//           <li>{c.member_count}명</li>
+//         </ul>
+//       </div>
+//     </article>
+//   ))}
+// </div>
+// </section>
