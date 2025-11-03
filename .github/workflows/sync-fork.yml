@@ -1,0 +1,21 @@
+name: Sync Fork
+
+on:
+  push:
+    branches: [main] # main 브랜치에 push될 때 실행
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout organization repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_TOKEN }}
+          fetch-depth: 0
+
+      - name: Push to fork
+        run: |
+          git remote add fork https://${{ secrets.SYNC_TOKEN }}@github.com/suki186/Chanllink-FE-Deploy.git
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          git push fork $BRANCH_NAME --force
