@@ -1,23 +1,39 @@
 @use '../../styles/mixins' as m;
 @use '../../styles/variables' as *;
 
-.sectionTitle {
-  @include m.font-size-weight(20px, 600);
-  color: $color-black;
+.myPageWrapper {
+  @include m.flex-column-center;
+
+  .myPageContainer {
+    width: 345px;
+    @include m.flex-column-center(center, flex-start, 24px);
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: #9d9d9d66;
+    }
+
+    .sectionTitle {
+      @include m.font-size-weight(20px, 600);
+      color: $color-black;
+    }
+  }
 }
 
-.logoTitle {
-  width: 345px;
+.topSection {
+  @include m.flex-column-center(center, flex-start, 12px);
 
-  @include m.flex-column-center(center, flex-start, 6px);
-  p {
-    @include m.font-size-weight(14px);
-    color: $main-color2;
+  .logoTitle {
+    @include m.flex-column-center(center, flex-start, 6px);
+    p {
+      @include m.font-size-weight(14px);
+      color: $main-color2;
+    }
   }
 }
 
 .profileBox {
-  width: 345px;
   @include m.flex-column-center(center, flex-start, 6px);
 
   div {
@@ -33,7 +49,6 @@
 }
 
 .pointBox {
-  width: 345px;
   @include m.flex-column-center(center, flex-start, 8px);
 
   .totalPoint {
@@ -60,4 +75,8 @@
   .pointButtons {
     @include m.flex-row-center(center, center, 12px);
   }
+}
+
+.endChallenges {
+  @include m.flex-column-center(center, flex-start, 12px);
 }
