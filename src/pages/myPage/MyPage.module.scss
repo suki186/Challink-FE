@@ -1,6 +1,11 @@
 @use '../../styles/mixins' as m;
 @use '../../styles/variables' as *;
 
+.sectionTitle {
+  @include m.font-size-weight(20px, 600);
+  color: $color-black;
+}
+
 .logoTitle {
   width: 345px;
 
@@ -15,11 +20,6 @@
   width: 345px;
   @include m.flex-column-center(center, flex-start, 6px);
 
-  .name {
-    @include m.font-size-weight(20px, 600);
-    color: $color-black;
-  }
-
   div {
     @include m.flex-row-center(center, center, 8px);
 
@@ -29,5 +29,35 @@
       @include m.text-ellipsis;
       color: $main-color2;
     }
+  }
+}
+
+.pointBox {
+  width: 345px;
+  @include m.flex-column-center(center, flex-start, 8px);
+
+  .totalPoint {
+    @include m.flex-column-center(center, flex-start, 4px);
+
+    .point {
+      @include m.flex-row-center(flex-start);
+      @include m.font-size-weight(20px);
+      color: $main-color2;
+      padding: 10px 14px;
+
+      width: 345px;
+      height: 48px;
+      border-radius: 4px;
+      border: 1px solid $gray-200;
+    }
+
+    p {
+      @include m.font-size-weight(8px, 400);
+      color: $gray-400;
+    }
+  }
+
+  .pointButtons {
+    @include m.flex-row-center(center, center, 12px);
   }
 }

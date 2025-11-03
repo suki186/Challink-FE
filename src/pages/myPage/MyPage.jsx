@@ -29,7 +29,7 @@ const MyPage = () => {
 
       {/* 계정 정보 */}
       <section className={s.profileBox}>
-        <p className={s.name}>최유성 님</p>
+        <p className={s.sectionTitle}>최유성 님</p>
         <div>
           <p className={s.email}>cys990922@naver.com</p>
           <GradientButton
@@ -44,13 +44,29 @@ const MyPage = () => {
       </section>
 
       {/* 포인트 관리 */}
-      <section>
-        <p>나의 지갑</p>
-        <div>포인트</div>
-        <p>클릭하면 상세 내역 조회가 가능합니다.</p>
-        <div>
-          <div>충전하기</div>
-          <div>계좌송금</div>
+      <section className={s.pointBox}>
+        <p className={s.sectionTitle}>나의 지갑</p>
+        <div className={s.totalPoint}>
+          <div className={s.point}>포인트 | 50,000</div>
+          <p>클릭하면 상세 내역 조회가 가능합니다.</p>
+        </div>
+        <div className={s.pointButtons}>
+          <GradientButton
+            width="166px"
+            height="40px"
+            text={`충전하기`}
+            borderRadius="8px"
+            fontSize="16px"
+            isFilled={true}
+          />
+          <GradientButton
+            width="166px"
+            height="40px"
+            text={`계좌송금`}
+            borderRadius="8px"
+            fontSize="16px"
+            isFilled={true}
+          />
         </div>
       </section>
     </div>
