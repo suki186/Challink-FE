@@ -4,8 +4,11 @@ import GradientBox from '../../components/GradientBox.jsx';
 import LOGO from '@assets/images/logo_gradient.png';
 import GradientButton from '../../components/GradientButton.jsx';
 import ChallengeCard from '../mainPage/components/ChallengeCard.jsx';
+import user from './datas/userDummy.json';
 
 const MyPage = () => {
+  const { name, email, point_balance, completed_challenges_count } = user;
+
   return (
     <div className={s.myPageContainer}>
       {/* 로고, 타이틀 */}
@@ -19,16 +22,16 @@ const MyPage = () => {
         <GradientBox
           width="345px"
           height="40px"
-          text={`지금까지 3개의 챌린지에 도전했어요!`}
+          text={`지금까지 ${completed_challenges_count}개의 챌린지에 도전했어요!`}
           square={true}
         />
       </div>
 
       {/* 계정 정보 */}
       <section className={s.profileBox}>
-        <p className={s.sectionTitle}>최유성 님</p>
+        <p className={s.sectionTitle}>{name} 님</p>
         <div>
-          <p className={s.email}>cys990922@naver.com</p>
+          <p className={s.email}>{email}</p>
           <GradientButton
             width="89px"
             height="29px"
@@ -44,7 +47,7 @@ const MyPage = () => {
       <section className={s.pointBox}>
         <p className={s.sectionTitle}>나의 지갑</p>
         <div className={s.totalPoint}>
-          <div className={s.point}>포인트 | 50,000</div>
+          <div className={s.point}>포인트 | {point_balance.toLocaleString()}</div>
           <p>클릭하면 상세 내역 조회가 가능합니다.</p>
         </div>
         <div className={s.pointButtons}>
