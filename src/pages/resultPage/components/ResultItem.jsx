@@ -2,21 +2,25 @@ import React from 'react';
 import s from './style/ResultItem.module.scss';
 import MY from '../../../assets/images/icons/my_icon.svg';
 
-const ResultItem = ({ isMe = false }) => {
-  const progress = (6 / 7) * 100;
+const ResultItem = ({ data, isMe }) => {
+  const { name, success_days, required_days, reward_points } = data;
+
+  const progress = required_days > 0 ? (success_days / required_days) * 100 : 0; // 성공률
 
   return (
     <div className={s.resultItemContainer}>
       <section className={s.section1}>
-        <p className={s.name}>김한성</p>
+        <p className={s.name}>{name}</p>
         {isMe && <img src={MY} alt="MY" width="17px" />}
       </section>
       <section className={s.section2}>
-        <p className={s.count}>22/27</p>
+        <p className={s.count}>
+          {success_days}/{required_days}
+        </p>
         <div className={s.statusBar}>
           <div className={s.statusBarFill} style={{ width: `${progress}%` }}></div>
         </div>
-        <p className={s.point}>300,000p</p>
+        <p className={s.point}>{reward_points.toLocaleString()}p</p>
       </section>
     </div>
   );

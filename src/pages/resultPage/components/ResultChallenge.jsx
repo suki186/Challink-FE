@@ -4,7 +4,9 @@ import GradientBox from '../../../components/GradientBox';
 import GradientButton from '../../../components/GradientButton';
 import ResultItem from './ResultItem';
 
-const ResultChallenge = () => {
+const ResultChallenge = ({ data }) => {
+  const { pot_total, rule_text, allocations, my } = data;
+
   return (
     <div className={s.resultChallengeContainer}>
       {/* 총 참가비, 정산 방법 */}
@@ -12,18 +14,23 @@ const ResultChallenge = () => {
         <GradientBox
           width="211px"
           height="36px"
-          text={`총 참가비: 300,000p`}
+          text={`총 참가비: ${pot_total.toLocaleString()}p`}
           borderRadius="20000px"
           fontSize="14px"
           icon={true}
         />
-        <p>모인 참가비를 성공자들끼리 N:1 분배해요</p>
+        <p>{rule_text}</p>
       </div>
 
       {/* 멤버별 성공횟수 및 포인트 */}
       <div className={s.memberItems}>
-        <ResultItem isMe={true} />
-        <ResultItem />
+        {allocations.map((allocation) => (
+          <ResultItem
+            key={allocation.user_id}
+            data={allocation}
+            isMe={allocation.user_id === my.user_id}
+          />
+        ))}
       </div>
 
       {/* 보상받기 버튼 */}

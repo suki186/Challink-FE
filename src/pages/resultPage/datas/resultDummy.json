@@ -1,0 +1,69 @@
+{
+  "challenge_id": 321,
+  "title": "📚 매일매일 독서",
+  "entry_fee": 50000,
+  "pot_total": 300000,
+  "participant_count": 6,
+  "required_days": 7,
+  "settlement_method": 1,
+  "status": "ready",
+  "scheduled_at": "2025-10-09T00:00:00+09:00",
+  "processed_at": "2025-10-09T00:00:05+09:00",
+  "rule_text": "모인 참가비를 성공자들끼리 N:1 분배해요",
+  "allocations": [
+    {
+      "user_id": 11,
+      "name": "김한성",
+      "success_days": 5,
+      "required_days": 7,
+      "is_success": false,
+      "reward_points": 0
+    },
+    {
+      "user_id": 12,
+      "name": "김동국",
+      "success_days": 7,
+      "required_days": 7,
+      "is_success": true,
+      "reward_points": 150000
+    },
+    {
+      "user_id": 13,
+      "name": "김숙명",
+      "success_days": 2,
+      "required_days": 7,
+      "is_success": false,
+      "reward_points": 0
+    },
+    {
+      "user_id": 14,
+      "name": "박한성",
+      "success_days": 5,
+      "required_days": 7,
+      "is_success": false,
+      "reward_points": 0
+    },
+    {
+      "user_id": 15,
+      "name": "박동국",
+      "success_days": 6,
+      "required_days": 7,
+      "is_success": false,
+      "reward_points": 0
+    },
+    {
+      "user_id": 16,
+      "name": "박숙명",
+      "success_days": 7,
+      "required_days": 7,
+      "is_success": true,
+      "reward_points": 150000
+    }
+  ],
+  "my": {
+    "user_id": 12,
+    "my_reward": 150000,
+    "can_claim": true,
+    "claimed_at": null
+  }
+}
