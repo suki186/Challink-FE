@@ -15,6 +15,7 @@ const ResultChallenge = () => {
           text={`총 참가비: 300,000p`}
           borderRadius="20000px"
           fontSize="14px"
+          icon={true}
         />
         <p>모인 참가비를 성공자들끼리 N:1 분배해요</p>
       </div>
