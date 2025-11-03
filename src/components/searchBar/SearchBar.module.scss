@@ -2,7 +2,8 @@
 @use '../../styles/mixins' as m;
 
 .searchForm {
-  width: 349px;
+  max-width: min(87.8vw, 385px);
+  width: 100%;
   height: 37px;
   background-color: #fcfcfc;
   border-radius: 4px;
@@ -15,7 +16,7 @@
   border: none;
   background: none;
   outline: none;
-  width: 297px;
+  width: 100%;
   height: 100%;
   color: $color-black;
   font-size: 14px;
