@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.logoTitle {
+  width: 345px;
+
+  @include m.flex-column-center(center, flex-start, 6px);
+  p {
+    @include m.font-size-weight(14px);
+    color: $main-color2;
+  }
+}
+
+.profileBox {
+  width: 345px;
+  @include m.flex-column-center(center, flex-start, 6px);
+
+  .name {
+    @include m.font-size-weight(20px, 600);
+    color: $color-black;
+  }
+
+  div {
+    @include m.flex-row-center(center, center, 8px);
+
+    .email {
+      width: 249px;
+      @include m.font-size-weight(16px, 500);
+      @include m.text-ellipsis;
+      color: $main-color2;
+    }
+  }
+}

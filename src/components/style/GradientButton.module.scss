@@ -39,7 +39,7 @@
 
   .innderText {
     @include m.primary-gradient-text;
-    font-weight: 600;
+    @include m.font-size-weight(20px, 600);
     transition: all 300ms ease;
   }
 }

@@ -1,7 +1,60 @@
 import React from 'react';
+import s from './MyPage.module.scss';
+import GradientBox from '../../components/GradientBox.jsx';
+import LOGO from '@assets/images/logo_gradient.png';
+import GradientButton from '../../components/GradientButton.jsx';
 
 const MyPage = () => {
-  return <div>MyPage</div>;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      {/* 로고, 타이틀 */}
+      <section className={s.logoTitle}>
+        <img src={LOGO} alt="로고" width="93px" />
+        <p>마이페이지</p>
+      </section>
+
+      {/* 도전한 챌린지 개수 */}
+      <GradientBox
+        width="349px"
+        height="40px"
+        text={`지금까지 3개의 챌린지에 도전했어요!`}
+        square={true}
+      />
+
+      {/* 계정 정보 */}
+      <section className={s.profileBox}>
+        <p className={s.name}>최유성 님</p>
+        <div>
+          <p className={s.email}>cys990922@naver.com</p>
+          <GradientButton
+            width="89px"
+            height="29px"
+            text={`로그아웃`}
+            borderRadius="8px"
+            fontSize="12px"
+            isFilled={true}
+          />
+        </div>
+      </section>
+
+      {/* 포인트 관리 */}
+      <section>
+        <p>나의 지갑</p>
+        <div>포인트</div>
+        <p>클릭하면 상세 내역 조회가 가능합니다.</p>
+        <div>
+          <div>충전하기</div>
+          <div>계좌송금</div>
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default MyPage;
