@@ -1,0 +1,81 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: center;
+  width: 393px;
+  height: 100vh;
+  z-index: 999; // 모든 요소 위
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px); // 배경 흐리게
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.challengeModalContainer {
+  @include m.flex-column-center(flex-start, center, null);
+  position: relative;
+  width: 345px;
+  height: 586px;
+  border-radius: 24px;
+  background-color: rgba($main-color2, 0.8);
+  color: #fcfcfc;
+
+  .closeButton {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 13px;
+    height: 13px;
+    background: none;
+    border: none;
+  }
+
+  .challengeTitle {
+    @include m.font-size-weight(18px, 500, 1.4);
+    margin: 15px 0;
+  }
+  .userInfo {
+    @include m.flex-row-center(center, center, null);
+    width: 263px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #333333;
+    margin-bottom: 12px;
+
+    .userName {
+      @include m.font-size-weight(14px, 500);
+    }
+  }
+  .coverImage {
+    width: 263px;
+    height: 175px;
+    border-radius: 8px;
+    border: 1px solid $gray-200;
+    object-fit: cover;
+    margin-bottom: 12px;
+  }
+  .challengeInfoCard {
+    width: 263px;
+    height: auto;
+    border-radius: 12px;
+    background-color: #333333;
+    padding: 16px 12px 17px 12px;
+
+    .challengeInfo {
+      @include m.font-size-weight(16px, 500, 1.6);
+      margin-bottom: 3px;
+    }
+    .meta {
+      @include m.font-size-weight(12px, 500, 1.4);
+      color: $gray-100;
+      margin: 0 0 23px 2px;
+    }
+    .duration {
+      @include m.font-size-weight(12px, 600);
+    }
+  }
+}

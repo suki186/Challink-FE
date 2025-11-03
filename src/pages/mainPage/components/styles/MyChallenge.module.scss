@@ -1,0 +1,74 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.myChallengeContainer {
+  .header {
+    padding: 18px 24px 0 24px;
+    .title {
+      font-size: 24px;
+      color: $main-color2;
+      font-weight: 600;
+    }
+    .description {
+      font-size: 12px;
+      color: $gray-500;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+  }
+  .characterBox {
+    .characterImage {
+      width: 140px;
+      height: 188px;
+      margin: 49px 0 8px 111px;
+    }
+  }
+
+  .quoteBubble {
+    max-width: 70%;
+    margin: 0 auto 40px auto;
+    position: relative;
+    padding: 10px 15px;
+    background-color: $color-white;
+    border-radius: 8px;
+    border: 0.7px solid $main-color1;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+
+    .quoteText {
+      font-size: 12px;
+      color: $color-black;
+      font-weight: 500;
+    }
+
+    // 꼬리 테두리
+    &::before {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-width: 0 11px 17px;
+      border-color: $main-color1 transparent;
+      display: block;
+      width: 0;
+      z-index: 1;
+      top: -17px;
+      left: 70%;
+      margin-left: -11px;
+    }
+
+    // 꼬리 내부
+    &::after {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-width: 0 10.5px 16px;
+      border-color: $color-white transparent;
+      display: block;
+      width: 0;
+      z-index: 1;
+      top: -16px;
+      left: 70%;
+      margin-left: -10.3px;
+    }
+  }
+}

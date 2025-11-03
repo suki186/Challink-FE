@@ -1,5 +1,5 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as m;
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
 
 .allChallengeContainer {
   .header {
@@ -8,7 +8,7 @@
 
     .title {
       @include m.font-size-weight(20px, 600, 28px);
-      color: $color-black;
+      color: $main-color2;
     }
   }
   .moreButton {
@@ -80,31 +80,3 @@
     }
   }
 }
-// <section className={s.allChallengeContainer}>
-// {/* 상단 타이틀 영역 */}
-// <header className={s.header}>
-//   <h2 className={s.title}>모든 챌린지</h2>
-//   <button className={s.viewAllButton}>더보기</button>
-// </header>
-
-// {/* 챌린지 리스트 */}
-// <div className={s.challengeList}>
-//   {dummyData.results.map((c) => (
-//     <article key={c.id} className={s.challengeItem}>
-//       <div className={s.coverImageBox}>
-//         <img src={img22} className={s.coverImage} />
-//       </div>
-//       <div className={s.contentBox}>
-//         <h3 className={s.challengeTitle}>{c.title}</h3>
-//         <ul className={s.metaList}>
-//           <li>{c.duration_weeks}주 동안</li>
-//           <li>{c.freq_type}</li>
-//           <li>{c.entry_fee}p</li>
-//           <li>{c.category}</li>
-//           <li>{c.member_count}명</li>
-//         </ul>
-//       </div>
-//     </article>
-//   ))}
-// </div>
-// </section>

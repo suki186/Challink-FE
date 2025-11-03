@@ -1,0 +1,27 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.headerContainer {
+  width: 100%;
+  height: 112px;
+  background: linear-gradient(123deg, $main-color1 46%, #f68484 100%);
+  .headerTop {
+    @include m.flex-row-center(space-between, center, null);
+    width: 100%;
+    max-width: min(87.8vw, 385px);
+    margin: 0 auto;
+    padding: 35px 0 10px 0;
+    .loginButton {
+      @include m.font-size-weight(12px, 400, 1.4%);
+      border: none;
+      background: none;
+      color: #fcfcfc;
+      text-decoration: underline;
+      text-decoration-color: #fcfcfc;
+      text-underline-offset: 2px;
+    }
+  }
+  .headerBottom {
+    @include m.flex-column-center(center, center, null);
+  }
+}

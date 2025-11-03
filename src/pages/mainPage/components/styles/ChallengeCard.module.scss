@@ -1,12 +1,13 @@
-@use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as m;
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
 
 .challengeCardContainer {
   .challengeCard {
     @include m.flex-row-center(flex-start, flex-start, null);
-    width: 345px;
+    max-width: min(87.8vw, 385px);
+    width: 100%;
     height: 121px;
-    margin: 0 24px 12px 24px;
+    margin: 0 auto 12px auto;
     background-color: $color-white;
     border: 1px solid $gray-200;
     border-radius: 8px;

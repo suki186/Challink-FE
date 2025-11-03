@@ -1,15 +1,24 @@
 import React from 'react';
-import s from './AllChallenge.module.scss';
+import { useNavigate } from 'react-router-dom';
+import s from './styles/AllChallenge.module.scss';
 import dummyData from '../datas/AllChallengeDummy.json';
 import img22 from '../datas/22.png';
 import chevron from '../../../assets/images/chevron_right_icon.svg';
+
 const AllChallenge = () => {
+  const navigate = useNavigate();
+
   return (
     <section className={s.allChallengeContainer}>
       {/* 상단 타이틀 */}
       <header className={s.header}>
         <h2 className={s.title}>모든 챌린지</h2>
-        <button className={s.moreButton}>
+        <button
+          className={s.moreButton}
+          onClick={() => {
+            navigate('/explore');
+          }}
+        >
           더보기
           <img src={chevron} className={s.moreIcon} alt="더보기 아이콘" />
         </button>
@@ -17,7 +26,7 @@ const AllChallenge = () => {
 
       {/* 챌린지 리스트 */}
       <div className={s.challengeList}>
-        {dummyData.results.map((c) => (
+        {dummyData.items.map((c) => (
           <article key={c.id} className={s.challengeItem}>
             <img src={img22} className={s.coverImage} />
             <div className={s.contentBox}>
