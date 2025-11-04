@@ -2,7 +2,8 @@
 @use '../../../../styles/variables' as *;
 
 .pointItemContainer {
-  @include m.flex-row-center(center, center, 8px);
+  @include m.flex-row-center(space-around, center, 8px);
+  padding: 14px;
   width: 300px;
   height: 61px;
   border-radius: 8px;
@@ -31,6 +32,5 @@
 
   .point {
     @include m.font-size-weight(14px);
-    color: #00bfff;
   }
 }

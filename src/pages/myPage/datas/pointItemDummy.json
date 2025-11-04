@@ -1,0 +1,35 @@
+{
+  "user_id": 712,
+  "page": 1,
+  "page_size": 20,
+  "total_count": 3,
+  "results": [
+    {
+      "history_id": 90123,
+      "type": "참가",
+      "title": "⏰ 매일 7시 기상팟 모집",
+      "amount": -30000,
+      "balance_after": 20000,
+      "challenge_id": 355,
+      "occurred_at": "2025-10-26T08:30:00Z"
+    },
+    {
+      "history_id": 90122,
+      "type": "충전",
+      "title": "포인트 충전",
+      "amount": 10000,
+      "balance_after": 50000,
+      "challenge_id": null,
+      "occurred_at": "2025-10-26T08:00:00Z"
+    },
+    {
+      "history_id": 90121,
+      "type": "보상",
+      "title": "👣 매일 10,000보 걷기",
+      "amount": 10000,
+      "balance_after": 40000,
+      "challenge_id": 311,
+      "occurred_at": "2025-10-26T07:55:00Z"
+    }
+  ]
+}
