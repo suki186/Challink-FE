@@ -10,6 +10,7 @@
   .gradientText {
     white-space: pre-line;
     text-align: center;
+    @include m.flex-row-center(center, center, 4px);
     @include m.font-size-weight(16px, 600);
   }
 
