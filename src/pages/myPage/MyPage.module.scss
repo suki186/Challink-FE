@@ -21,6 +21,16 @@
 .topSection {
   @include m.flex-column-center(center, flex-start, 12px);
 
+  .bubbleChar {
+    width: 345px;
+    @include m.flex-column-center(center, center, 43px);
+    margin: 80px 0 140px 0;
+
+    img {
+      margin-right: 30px;
+    }
+  }
+
   .logoTitle {
     @include m.flex-column-center(center, flex-start, 6px);
 
