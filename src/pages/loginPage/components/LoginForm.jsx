@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import s from './styles/LoginForm.module.scss';
+import GradientButton from '../../../components/GradientButton';
 
 import {
   EmailIcon,
@@ -15,6 +16,10 @@ const LoginForm = () => {
   const [idSave, setIdSave] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const handleButtonClick = () => {
+    //연동
+  };
+
   return (
     <div className={s.LoginFormContainer}>
       <div className={s.inputField}>
@@ -65,6 +70,17 @@ const LoginForm = () => {
         <button type="button" onClick={() => setIdSave(!idSave)} className={s.idSaveBtn}>
           {idSave ? <CheckFillIcon /> : <CheckIcon />} 아이디 저장
         </button>
+      </div>
+      <div className={s.loginBtnContainer}>
+        <GradientButton
+          width="100%"
+          height="60px"
+          text="로그인"
+          borderRadius="16px"
+          isFilled="false"
+          fontSize="18px"
+          onClick={handleButtonClick}
+        />
       </div>
     </div>
   );
