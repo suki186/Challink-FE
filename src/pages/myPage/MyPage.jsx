@@ -7,9 +7,11 @@ import GradientButton from '../../components/GradientButton.jsx';
 import ChallengeCard from '../mainPage/components/ChallengeCard.jsx';
 import Bubble from '../verifyPage/components/Bubble.jsx';
 import user from './datas/userDummy.json';
+import PointHistory from './components/PointHistory.jsx';
+import { formatNumberWithCommas } from '../../utils/format.js';
 
 const MyPage = () => {
-  const isLoggedIn = false; // 로그인 여부(임시)
+  const isLoggedIn = true; // 로그인 여부(임시)
 
   if (!isLoggedIn) {
     return (
@@ -68,10 +70,11 @@ const MyPage = () => {
         </div>
       </section>
       {/* 포인트 관리 */}
+      <PointHistory />
       <section className={s.pointBox}>
         <p className={s.sectionTitle}>나의 지갑</p>
         <div className={s.totalPoint}>
-          <div className={s.point}>포인트 | {point_balance.toLocaleString()}</div>
+          <div className={s.point}>포인트 | {formatNumberWithCommas(point_balance)}</div>
           <p>클릭하면 상세 내역 조회가 가능합니다.</p>
         </div>
         <div className={s.pointButtons}>
