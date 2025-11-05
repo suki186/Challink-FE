@@ -1,0 +1,107 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.myPageContainer {
+  @include m.flex-column-center(center, center, 24px);
+  margin: 24px 0 90px 0;
+
+  .divider {
+    width: 345px;
+    height: 1px;
+    background-color: #9d9d9d66;
+  }
+
+  .sectionTitle {
+    width: 345px;
+    @include m.font-size-weight(20px, 600);
+    color: $color-black;
+  }
+}
+
+.topSection {
+  @include m.flex-column-center(center, flex-start, 12px);
+
+  .bubbleChar {
+    width: 345px;
+    @include m.flex-column-center(center, center, 43px);
+    margin: 80px 0 140px 0;
+
+    img {
+      margin-right: 30px;
+    }
+  }
+
+  .logoTitle {
+    @include m.flex-column-center(center, flex-start, 6px);
+
+    p {
+      @include m.font-size-weight(14px);
+      color: $main-color2;
+    }
+  }
+}
+
+.profileBox {
+  @include m.flex-column-center(center, flex-start, 6px);
+
+  div {
+    @include m.flex-row-center(center, center, 8px);
+
+    .email {
+      width: 249px;
+      @include m.font-size-weight(16px, 500);
+      @include m.text-ellipsis;
+      color: $main-color2;
+    }
+  }
+}
+
+.pointBox {
+  @include m.flex-column-center(center, flex-start, 8px);
+
+  .totalPoint {
+    @include m.flex-column-center(center, flex-start, 4px);
+    cursor: pointer;
+
+    .point {
+      @include m.flex-row-center(flex-start);
+      @include m.font-size-weight(20px);
+      color: $main-color2;
+      padding: 10px 14px;
+
+      width: 345px;
+      height: 48px;
+      border-radius: 4px;
+      border: 1px solid $gray-200;
+    }
+
+    p {
+      @include m.font-size-weight(8px, 400);
+      color: $gray-400;
+    }
+  }
+
+  .pointButtons {
+    @include m.flex-row-center(center, center, 12px);
+  }
+}
+
+.endChallenges {
+  @include m.flex-column-center(center, flex-start, 12px);
+
+  .endCards {
+    width: 100%;
+  }
+}
+
+.modalOverlay {
+  @include m.flex-row-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+}

@@ -3,9 +3,11 @@ import ChallengeBody from '../challengeLayout/ChallengeBody';
 import PhotosChallenge from './components/PhotosChallenge';
 import data from './datas/photosDummy.json';
 import PhotoDetail from './components/PhotoDetail';
+import useBodyScrollLock from '../../hooks/useBodyScrollLock';
 
 const PhotosPage = () => {
   const [selectedPhoto, setSelectedPhoto] = useState(null); // 선택된 사진
+  useBodyScrollLock(selectedPhoto);
 
   // 클릭된 사진 정보를 받아 state에 저장
   const handlePhotoClick = (photo) => {

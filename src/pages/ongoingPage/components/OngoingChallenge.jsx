@@ -10,6 +10,8 @@ import NOPHOTO from '@assets/images/no_photo.png';
 
 import IconButton from '../../../components/IconButton';
 import TodayPhotoBox from './TodayPhotoBox';
+import useNavigation from '../../../hooks/useNavigation';
+import { useLocation } from 'react-router-dom';
 
 const todayPhotos = [
   { src: BOOK, name: '김한성' },
@@ -21,6 +23,10 @@ const todayPhotos = [
 ];
 
 const OngoingChallenge = () => {
+  const { goTo } = useNavigation();
+  const location = useLocation(); // 챌린지 id
+  const currentPath = location.pathname;
+
   const inviteCode = 'FDFsFE23sRE';
 
   const handleCopy = async () => {
@@ -57,8 +63,8 @@ const OngoingChallenge = () => {
       <section className={s.challengeButtom}>
         {/* 인증하기, 도전앨범 버튼 */}
         <div className={s.twoButton}>
-          <GradientButton text="인증하기" />
-          <GradientButton text="도전앨범" />
+          <GradientButton text="인증하기" onClick={() => goTo(`${currentPath}/verify`)} />
+          <GradientButton text="도전앨범" onClick={() => goTo(`${currentPath}/photos`)} />
         </div>
 
         {/* 총 참가비, 정산 방법 */}

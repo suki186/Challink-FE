@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './style/ResultItem.module.scss';
 import MY from '../../../assets/images/icons/my_icon.svg';
+import { formatNumberWithCommas } from '../../../utils/format';
 
 const ResultItem = ({ data, isMe }) => {
   const { name, success_days, required_days, reward_points } = data;
@@ -20,7 +21,7 @@ const ResultItem = ({ data, isMe }) => {
         <div className={s.statusBar}>
           <div className={s.statusBarFill} style={{ width: `${progress}%` }}></div>
         </div>
-        <p className={s.point}>{reward_points.toLocaleString()}p</p>
+        <p className={s.point}>{formatNumberWithCommas(reward_points)}p</p>
       </section>
     </div>
   );

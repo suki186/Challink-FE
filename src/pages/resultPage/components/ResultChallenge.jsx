@@ -3,6 +3,7 @@ import s from './style/ResultChallenge.module.scss';
 import GradientBox from '../../../components/GradientBox';
 import GradientButton from '../../../components/GradientButton';
 import ResultItem from './ResultItem';
+import { formatNumberWithCommas } from '../../../utils/format';
 
 const ResultChallenge = ({ data }) => {
   const { pot_total, rule_text, allocations, my } = data;
@@ -14,7 +15,7 @@ const ResultChallenge = ({ data }) => {
         <GradientBox
           width="211px"
           height="36px"
-          text={`총 참가비: ${pot_total.toLocaleString()}p`}
+          text={`총 참가비: ${formatNumberWithCommas(pot_total)}p`}
           borderRadius="20000px"
           fontSize="14px"
           icon={true}

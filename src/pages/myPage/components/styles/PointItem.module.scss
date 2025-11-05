@@ -1,0 +1,36 @@
+@use '../../../../styles/mixins' as m;
+@use '../../../../styles/variables' as *;
+
+.pointItemContainer {
+  @include m.flex-row-center(space-around, center, 8px);
+  padding: 14px;
+  width: 300px;
+  height: 61px;
+  border-radius: 8px;
+  background-color: $main-color2;
+
+  .type {
+    @include m.font-size-weight(18px, 600);
+    color: $gray-white;
+  }
+
+  .info {
+    @include m.flex-column-center(center, flex-start, 4px);
+
+    .title {
+      @include m.text-ellipsis;
+      width: 150px;
+      @include m.font-size-weight(14px, 600);
+      color: $gray-white;
+    }
+
+    .date {
+      @include m.font-size-weight;
+      color: $gray-200;
+    }
+  }
+
+  .point {
+    @include m.font-size-weight(14px);
+  }
+}

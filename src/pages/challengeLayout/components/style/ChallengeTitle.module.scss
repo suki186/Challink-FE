@@ -2,11 +2,14 @@
 @use '../../../../styles/variables' as *;
 
 .challengeTitleContainer {
+  width: 100%;
   @include m.flex-column-center(center, center, 24px);
 }
+
 .ongoingTitle {
-  width: 346px;
+  width: 100%;
   @include m.flex-row-center(flex-start, center, 6px);
+  padding-left: 24px;
 
   p {
     @include m.font-size-weight(20px, 600);

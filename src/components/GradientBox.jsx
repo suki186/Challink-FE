@@ -6,7 +6,7 @@ const GradientBox = ({
   width,
   height,
   text,
-  borderRadius,
+  borderRadius = '4px',
   square = false,
   fontSize = '16px',
   icon = false,
