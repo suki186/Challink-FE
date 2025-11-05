@@ -1,0 +1,20 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.notFoundContainer {
+  height: 100vh;
+  @include m.flex-column-center(flex-start, center, 42px);
+  padding-top: 42px;
+
+  .textBox {
+    @include m.flex-column-center(center, center, 4px);
+
+    .notFoundText {
+      @include m.font-size-weight(24px, 600);
+    }
+
+    .subText {
+      @include m.font-size-weight(16px, 500);
+    }
+  }
+}
