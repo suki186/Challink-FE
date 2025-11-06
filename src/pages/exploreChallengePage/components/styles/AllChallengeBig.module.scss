@@ -2,9 +2,12 @@
 @use '../../../../styles/mixins' as m;
 
 .allChallengeContainer {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  @include m.flex-column-center(center, center, 10.8px);
+  margin-top: 10px;
+
   .challengeList {
+    width: 362px;
     @include m.hide-scrollbar();
     display: grid;
     grid-template-columns: repeat(2, 1fr); // 가로 2열

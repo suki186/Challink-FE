@@ -2,6 +2,9 @@
 @use '../../../../styles/mixins' as m;
 
 .headerContainer {
+  width: 100%;
+  @include m.flex-column-center(center, flex-start, 10.8px);
+
   .headerTop {
     @include m.flex-row-center(flex-start, center, 10.8px);
     margin: 20px 0 12px 24px;

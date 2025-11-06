@@ -7,15 +7,16 @@ const GradientButton = ({
   text,
   borderRadius = '20000px',
   isFilled = false,
+  isWhite = false,
   fontSize = '20px',
   onClick,
 }) => {
+  const buttonClasses = [s.gradientButton, isFilled ? s.filled : '', isWhite ? s.white : '']
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div
-      className={`${s.gradientButton} ${isFilled ? s.filled : ''}`}
-      style={{ width, height, borderRadius }}
-      onClick={onClick}
-    >
+    <div className={buttonClasses} style={{ width, height, borderRadius }} onClick={onClick}>
       <span className={s.innerSpan}>
         <div className={s.innderText} style={{ fontSize }}>
           {text}

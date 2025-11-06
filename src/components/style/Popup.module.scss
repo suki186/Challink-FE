@@ -1,0 +1,84 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  @include m.flex-column-center;
+  z-index: 1000;
+}
+
+// 팝업 공통 스타일
+.popupContainer {
+  @include m.flex-column-center;
+  width: 311px;
+  padding: 16px;
+  border-radius: 24px;
+  text-align: center;
+
+  // 실패 (fail)
+  &.fail {
+    @include m.primary-gradient;
+    height: 326px;
+
+    .gradientCircle {
+      background-color: #1146e766;
+    }
+  }
+
+  // 성공 (success)
+  &.success {
+    background-color: $main-color2;
+    height: 326px;
+
+    .gradientCircle {
+      background-color: #ff3f3e66;
+    }
+  }
+
+  // 기본 (default)
+  &.default {
+    height: 207px;
+    background-color: $main-color2;
+  }
+}
+
+.title {
+  @include m.font-size-weight(20px, 600);
+  color: $color-white;
+  margin-bottom: 23px;
+}
+
+.subtitle {
+  @include m.font-size-weight(14px);
+  color: $color-white;
+  margin: 12px 0 20px 0;
+  white-space: pre-line;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 120px;
+  @include m.flex-row-center;
+}
+
+.gradientCircle {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(15px);
+  opacity: 0.7;
+}
+
+.image {
+  position: relative;
+  z-index: 2;
+  width: 79.926px;
+  margin-right: 15px;
+}

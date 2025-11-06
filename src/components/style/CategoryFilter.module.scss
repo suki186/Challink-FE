@@ -1,10 +1,12 @@
-@use '../../../../styles/variables' as *;
-@use '../../../../styles/mixins' as m;
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
 
 .categoryFilter {
   @include m.flex-row-center(flex-start, center, 12px);
-  margin: 12px 0 22px 24px;
-  flex-wrap: wrap;
+  padding: 0 24px;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  max-width: 440px;
 }
 
 .categoryButton {
@@ -14,9 +16,10 @@
   border: none;
   border-radius: 9999px;
   padding: 6px 15px;
+  flex-shrink: 0;
 }
 
 .categoryButtonActive {
-  background: linear-gradient(123deg, #ff3f3e 46%, #ff7b7b 100%);
+  @include m.primary-gradient;
   color: $color-white;
 }

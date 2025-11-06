@@ -1,0 +1,27 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as m;
+
+.loginFormContainer {
+  @include m.flex-column-center(center, center, null);
+  > *:first-child {
+    margin-bottom: 20px;
+  }
+  .idSaveContainer {
+    margin-top: 12px;
+    width: 100%;
+    max-width: min(81.4vw, 355px);
+    .idSaveBtn {
+      @include m.flex-row-center(flex, center, 6px);
+      @include m.font-size-weight(14px, 400, 22px);
+      color: #9ea3b2;
+      border: none;
+      background: none;
+      outline: none;
+    }
+  }
+}
+.loginBtnContainer {
+  margin: 66px auto 0 auto;
+  width: 100%;
+  max-width: min(83vw, 365.5px);
+}

@@ -1,10 +1,20 @@
 import React from 'react';
 import s from './style/TabBar.module.scss';
-import HOME from '../../assets/images/home_fill_icon.svg';
-import MY from '../../assets/images/my_empty_icon.svg';
+import HOME_FILL from '../../assets/images/icons/home_fill_icon.svg';
+import HOME_EMPTY from '../../assets/images/icons/home_empty_icon.svg';
+import MY_FILL from '../../assets/images/icons/my_fill_icon.svg';
+import MY_EMPTY from '../../assets/images/icons/my_empty_icon.svg';
 import CreateChallengeBtn from './CreateChallengeBtn';
+import useNavigation from '../../hooks/useNavigation';
+import { useLocation } from 'react-router-dom';
 
 const TabBar = () => {
+  const { goTo } = useNavigation();
+  const { pathname } = useLocation();
+
+  const isActiveHome = pathname.startsWith('/main') || pathname === '/';
+  const isActiveMy = pathname.startsWith('/profile');
+
   return (
     <div className={s.tabBarWrapper}>
       {/* 챌린지 생성 버튼 */}
@@ -19,13 +29,7 @@ const TabBar = () => {
         preserveAspectRatio="xMidYMax meet"
       >
         <defs>
-          <filter
-            id="tabBarShadow"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-          >
+          <filter id="tabBarShadow" x="-20%" y="-20%" width="140%" height="140%">
             <feDropShadow
               dx="2"
               dy="-4"
@@ -42,14 +46,14 @@ const TabBar = () => {
         />
       </svg>
 
-      {/* 홈, 마이 아이콘 -> 나중에 클릭 여부에 따라 아이콘 변경 예정 */}
+      {/* 홈, 마이 아이콘 */}
       <div className={s.tabIcons}>
-        <div className={s.tabIcon}>
-          <img src={HOME} width="18px" height="22px" />
+        <div className={s.tabIcon} onClick={() => goTo('/main')}>
+          <img src={isActiveHome ? HOME_FILL : HOME_EMPTY} width="18px" height="22px" alt="홈" />
           <p className={s.tabText}>홈</p>
         </div>
-        <div className={s.tabIcon}>
-          <img src={MY} width="18.69px" height="20.13px" />
+        <div className={s.tabIcon} onClick={() => goTo('/profile')}>
+          <img src={isActiveMy ? MY_FILL : MY_EMPTY} width="18.69px" height="20.13px" alt="마이" />
           <p className={s.tabText}>마이</p>
         </div>
       </div>

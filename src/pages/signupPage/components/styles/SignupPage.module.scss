@@ -1,0 +1,26 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as m;
+
+* {
+  @include m.hide-scrollbar();
+}
+.signUpFormContainer {
+  @include m.flex-column-center(center, center, 20px);
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+.condition {
+  width: 100%;
+  max-width: min(83vw, 365.5px);
+  padding-left: 6px;
+  margin: 6px auto 0 auto;
+
+  @include m.font-size-weight(10px, 400, 1.4);
+  color: $main-color2;
+}
+.signUpBtnContainer {
+  margin: 66px auto 90px auto;
+  width: 100%;
+  max-width: min(83vw, 365.5px);
+}

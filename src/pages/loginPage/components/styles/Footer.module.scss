@@ -1,0 +1,20 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.FooterContainer {
+  position: fixed;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .SignupBtn {
+    @include m.font-size-weight(16px, 500, 1.4);
+
+    color: $gray-500;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    text-decoration-color: $gray-500;
+    text-underline-offset: 2px;
+  }
+}

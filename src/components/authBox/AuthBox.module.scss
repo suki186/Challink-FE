@@ -1,0 +1,42 @@
+@use '@styles/variables' as *;
+@use '@styles/mixins' as m;
+
+.inputContainer {
+  @include m.flex-column-center(center, flex, 10px);
+  width: 100%;
+  max-width: min(83vw, 365.5px);
+  margin: 0 auto;
+  .inputLabel {
+    @include m.font-size-weight(14px, 500, 1.4);
+    color: $main-color2;
+    padding-left: 8px;
+  }
+  .inputWrapper {
+    @include m.flex-row-center(center, center, 6px);
+    padding: 18px 20px;
+    height: 60px;
+    border: 1px solid $gray-200;
+    border-radius: 12px;
+    .inputBox {
+      border: none;
+      background: none;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      @include m.font-size-weight(14px, 400, 22px);
+      color: $main-color2;
+    }
+    &::placeholder {
+      @include m.font-size-weight(14px, 400, 22px);
+      color: #777c89;
+    }
+  }
+  .togglePasswordBtn {
+    width: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+  }
+}

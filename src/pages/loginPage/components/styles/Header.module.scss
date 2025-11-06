@@ -1,0 +1,7 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as m;
+
+.headerContainer {
+  @include m.flex-column-center(center, center, null);
+  margin: 42px 0 40px 0;
+}
