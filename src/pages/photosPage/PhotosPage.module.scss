@@ -1,0 +1,7 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.PhotosPageContainer {
+  width: 100%;
+  @include m.flex-column-center(flex-start, flex-start, 20px);
+}
