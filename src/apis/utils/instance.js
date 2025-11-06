@@ -19,21 +19,6 @@ const onRequestRejected = (error) => {
   return Promise.reject(error);
 };
 
-// 기본 인스턴스
-export const defaultInstance = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json; charset=UTF-8',
-  },
-});
-defaultInstance.interceptors.request.use(onRequestFulfilled, onRequestRejected);
-
-// form-data 인스턴스
-export const multiInstance = axios.create({
-  baseURL: BASE_URL,
-});
-multiInstance.interceptors.request.use(onRequestFulfilled, onRequestRejected);
-
 // ===== 공통 응답 인터셉터
 const onResponseFulfilled = (response) => {
   return response;
@@ -50,5 +35,19 @@ const onResponseRejected = (error) => {
   return Promise.reject(error);
 };
 
+// 기본 인스턴스
+export const defaultInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json; charset=UTF-8',
+  },
+});
+defaultInstance.interceptors.request.use(onRequestFulfilled, onRequestRejected);
 defaultInstance.interceptors.response.use(onResponseFulfilled, onResponseRejected);
+
+// form-data 인스턴스
+export const multiInstance = axios.create({
+  baseURL: BASE_URL,
+});
+multiInstance.interceptors.request.use(onRequestFulfilled, onRequestRejected);
 multiInstance.interceptors.response.use(onResponseFulfilled, onResponseRejected);
