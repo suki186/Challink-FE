@@ -28,6 +28,7 @@
   @include m.flex-row-center(space-between, center);
   margin-top: 12px;
 }
+
 .tags {
   @include m.flex-row-center(center, center, 12px);
 
@@ -69,4 +70,5 @@
 .commentInfo {
   @include m.font-size-weight(12px, 400);
   color: $gray-white;
+  padding-top: 3px;
 }
