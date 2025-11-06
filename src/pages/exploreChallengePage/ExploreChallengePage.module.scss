@@ -1,0 +1,6 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.exploreChallengePageContainer {
+  @include m.flex-column-center(center, flex-start, 12px);
+}

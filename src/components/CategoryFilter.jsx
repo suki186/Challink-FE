@@ -1,9 +1,7 @@
 import React from 'react';
-import s from './styles/CategoryFilter.module.scss';
+import s from './style/CategoryFilter.module.scss';
 
-const categories = ['전체', '운동', '식습관', '생활', '기타'];
-
-const CategoryFilter = ({ selectedCategory, onSelect }) => {
+const CategoryFilter = ({ categories = [], selectedCategory, onSelect }) => {
   const handleClick = (category) => {
     // 중복 클릭 방지
     if (selectedCategory === category) return;
