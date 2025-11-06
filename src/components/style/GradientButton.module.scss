@@ -27,6 +27,37 @@
       -webkit-text-fill-color: $gray-white;
     }
   }
+
+  // isWhite={true}
+  &.white {
+    background: transparent;
+    border: 1px solid $color-white;
+    box-shadow: none;
+
+    .innerSpan {
+      background: none;
+    }
+
+    .innderText {
+      background-image: none;
+      background-clip: initial;
+      -webkit-background-clip: initial;
+
+      color: $color-white;
+      -webkit-text-fill-color: $color-white;
+    }
+
+    &:hover {
+      background: $main-color2;
+      border-color: transparent;
+      box-shadow: none;
+
+      .innderText {
+        color: $color-white;
+        -webkit-text-fill-color: $color-white;
+      }
+    }
+  }
 }
 
 .innerSpan {
