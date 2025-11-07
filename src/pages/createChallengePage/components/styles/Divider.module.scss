@@ -1,0 +1,10 @@
+@use '@styles/mixins' as m;
+@use '@styles/variables' as *;
+
+.divider {
+  width: 100%;
+  max-width: min(87.8vw, 360px);
+  height: 1px;
+  background-color: $gray-300;
+  margin: 24px auto;
+}

@@ -1,0 +1,63 @@
+@use '@styles/mixins' as m;
+@use '@styles/variables' as *;
+
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+}
+
+.dropdownButton {
+  @include m.flex-row-center(center, center, null);
+  @include m.font-size-weight(14px, 600, 1.4);
+  width: 100%;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  background-image: $primary-gradient;
+  color: $color-white;
+}
+
+.arrow {
+  margin-left: 4px;
+  transition: transform 0.4s ease;
+}
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.dropdownList {
+  position: absolute;
+  top: 47px;
+  left: 0;
+  padding: 12px 5px 12px 5px;
+  width: 100%;
+  background-color: $color-white;
+  border-radius: 0 8px 8px 8px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dropdownItem {
+  @include m.flex-row-center(center, center, null);
+  @include m.font-size-weight(12px, 500, 1.4);
+  width: 100%;
+  padding: 16px 30px;
+  color: $main-color2;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &.active {
+    background-image: linear-gradient(
+      90deg,
+      rgba(95, 67, 255, 0.12) 0%,
+      rgba(130, 67, 255, 0.12) 100%
+    );
+  }
+}
