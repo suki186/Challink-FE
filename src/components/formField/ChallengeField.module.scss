@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as m;
+
+.challengeField {
+  @include m.flex-column-center(flex, flex, null);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.fieldControl {
+  @include m.flex-row-center(flex, center, null);
+  position: relative;
+
+  .fieldTextarea,
+  .fieldInput {
+    @include m.font-size-weight(12px, 500, 1.4);
+    color: $main-color2;
+    resize: none;
+    overflow: auto;
+    border: 1px solid $gray-200;
+    border-radius: 4px;
+    outline: none;
+    padding: 14px 10px;
+    box-shadow: 0 0 8px rgba($box-shadow, 0.05);
+  }
+  .fieldInput[type='number'] {
+    /* Firefox */
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.fieldAddon {
+  @include m.font-size-weight(12px, 500, 1.4);
+  color: $main-color2;
+  position: absolute;
+  right: 14px;
+}
+
+.fieldComment {
+  @include m.font-size-weight(8px, 500, 1.4);
+  color: $main-color2;
+  margin: 4px 0 0 7px;
+}
