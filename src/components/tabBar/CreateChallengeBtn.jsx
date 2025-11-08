@@ -6,7 +6,15 @@ import PLUS from '../../assets/images/plus_icon.svg';
 const CreateChallengeBtn = ({ className }) => {
   return (
     <div className={`${s.buttonContainer} ${className || ''}`}>
-      <img src={PLUS} width={24} height={24} />
+      <img
+        src={PLUS}
+        style={{
+          height: '100%',
+          maxHeight: 'min(6.11vw, 24px)',
+          width: '100%',
+          maxWidth: 'min(6.11vw, 24px)',
+        }}
+      />
     </div>
   );
 };

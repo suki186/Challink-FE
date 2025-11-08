@@ -23,8 +23,13 @@ const TabBar = () => {
       {/* 탭바 Body */}
       <svg
         viewBox="0 0 349 68"
-        width="380"
-        height="88"
+        style={{
+          width: '100%',
+          maxWidth: 'min(88.8vw, 380px)',
+          minWidth: '340px',
+          height: '88px',
+          overflow: 'visible',
+        }}
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMax meet"
       >
