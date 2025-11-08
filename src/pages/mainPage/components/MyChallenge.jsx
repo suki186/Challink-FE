@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './styles/MyChallenge.module.scss';
 import character from '../../../assets/images/character.svg';
+import ChallengeCard from './ChallengeCard';
 
 const MyChallenge = () => {
   return (
@@ -18,6 +19,7 @@ const MyChallenge = () => {
           가장 위대한 영광은 한 번도 실패하지 않음이 아니라 실패할 때마다 다시 일어서는 데에 있다
         </blockquote>
       </div>
+      <ChallengeCard />
     </section>
   );
 };

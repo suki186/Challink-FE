@@ -28,7 +28,6 @@ const router = createBrowserRouter([
   // Layout 밖 페이지
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <SignupPage /> },
-  { path: '*', element: <NotFoundPage /> }, // 404
 
   // Layout 안 페이지 -> 디자인에 따라 변경될수도
   {
@@ -39,8 +38,6 @@ const router = createBrowserRouter([
       { path: 'main', element: <MainPage /> },
       { path: 'explore', element: <ExploreChallengePage /> },
       { path: 'challenge/create', element: <CreateChallengePage /> },
-
-      // 챌린지 단일 라우트
       {
         path: 'challenge/:id',
         element: <ChallengeLayout />,
@@ -53,6 +50,7 @@ const router = createBrowserRouter([
       },
 
       { path: 'profile', element: <MyPage /> },
+      { path: '*', element: <NotFoundPage /> }, // 404
     ],
   },
 ]);

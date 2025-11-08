@@ -10,8 +10,10 @@ import user from './datas/userDummy.json';
 import PointHistory from './components/PointHistory.jsx';
 import { formatNumberWithCommas } from '../../utils/format.js';
 import useBodyScrollLock from '../../hooks/useBodyScrollLock.js';
+import useNavigation from '../../hooks/useNavigation.js';
 
 const MyPage = () => {
+  const { goTo } = useNavigation();
   const isLoggedIn = true; // 로그인 여부(임시)
   const [isPointModal, setIsPointModal] = useState(false); // 포인트 내역 모달
 
@@ -26,6 +28,11 @@ const MyPage = () => {
   // 포인트 모달 닫기
   const closePointModal = () => {
     setIsPointModal(false);
+  };
+
+  const handleLogout = () => {
+    goTo('/login');
+    localStorage.clear();
   };
 
   if (!isLoggedIn) {
@@ -81,6 +88,7 @@ const MyPage = () => {
             borderRadius="8px"
             fontSize="12px"
             isFilled={true}
+            onClick={handleLogout}
           />
         </div>
       </section>
