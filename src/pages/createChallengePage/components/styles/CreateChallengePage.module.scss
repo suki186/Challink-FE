@@ -147,7 +147,6 @@
   .createButton {
     @include m.font-size-weight(18px, 600, 1.4);
     width: 100%;
-    max-width: min(57.51vw, 265px);
     height: 100%;
     background-color: $color-white;
     background-image: linear-gradient(

@@ -241,7 +241,7 @@ const CreateChallengePage = () => {
           onClick={handleCreateClick}
           disabled={!isActive} // disabled 속성 추가
         >
-          챌린지 만들기{' '}
+          챌린지 만들기
         </button>
       </section>
     </div>
