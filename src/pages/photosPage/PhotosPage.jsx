@@ -37,7 +37,7 @@ const PhotosPage = () => {
           selectedCategory={selectedCategory}
           onSelect={setSelectedCategory}
         />
-        <ChallengeBody height="624px">
+        <ChallengeBody>
           <PhotosChallenge photoData={filteredPhotos} onPhotoClick={handlePhotoClick} />
         </ChallengeBody>
       </div>

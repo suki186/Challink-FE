@@ -1,0 +1,13 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as m;
+
+.layoutContainer {
+  .tabBarContent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 104px;
+    z-index: 1000;
+  }
+}

@@ -4,7 +4,7 @@ import OngoingChallenge from './components/OngoingChallenge';
 
 const OngoingPage = () => {
   return (
-    <ChallengeBody height="672px">
+    <ChallengeBody>
       <OngoingChallenge />
     </ChallengeBody>
   );
