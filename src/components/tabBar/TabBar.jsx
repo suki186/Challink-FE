@@ -23,7 +23,7 @@ const TabBar = () => {
       {/* 탭바 Body */}
       <svg
         viewBox="0 0 349 68"
-        width="349"
+        width="380"
         height="88"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMax meet"

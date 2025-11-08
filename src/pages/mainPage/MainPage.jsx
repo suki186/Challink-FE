@@ -6,12 +6,10 @@ import AllChallenge from './components/AllChallenge';
 import Footer from '../../components/footer/Footer';
 // import TabBar from '../../components/tabBar/TabBar';
 const MainPage = () => {
-
   return (
     <div>
       <Header />
       <MyChallenge />
-      <ChallengeCard />
       <AllChallenge />
       <Footer />
     </div>

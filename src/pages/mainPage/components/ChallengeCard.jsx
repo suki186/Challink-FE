@@ -2,10 +2,14 @@ import React from 'react';
 import s from './styles/ChallengeCard.module.scss';
 import dummyData from '../datas/ChallengeCardDummy.json';
 import img22 from '../datas/22.png';
+import useNavigation from '../../../hooks/useNavigation';
 
 const ChallengeCard = () => {
+  const { goTo } = useNavigation();
+
   return (
-    <section className={s.challengeCardContainer}>
+    // challenge/1은 임시 -> 고유id로 변경 예정
+    <section className={s.challengeCardContainer} onClick={() => goTo('/challenge/1')}>
       {dummyData.results.map((c) => (
         <article key={c.id} className={s.challengeCard}>
           <div className={s.coverImageBox}>

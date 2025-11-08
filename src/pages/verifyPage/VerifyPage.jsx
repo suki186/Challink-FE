@@ -4,7 +4,7 @@ import VerifyChallenge from './components/VerifyChallenge';
 
 const VerifyPage = () => {
   return (
-    <ChallengeBody height="672px">
+    <ChallengeBody>
       <VerifyChallenge />
     </ChallengeBody>
   );
