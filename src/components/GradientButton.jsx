@@ -9,14 +9,32 @@ const GradientButton = ({
   isFilled = false,
   isWhite = false,
   fontSize = '20px',
+  disabled = false,
   onClick,
 }) => {
-  const buttonClasses = [s.gradientButton, isFilled ? s.filled : '', isWhite ? s.white : '']
+  const computedFilled = disabled ? false : (isFilled ?? true);
+
+  const buttonClasses = [
+    s.gradientButton,
+    computedFilled ? s.filled : '',
+    isWhite ? s.white : '',
+    disabled ? s.disabled : '',
+  ]
     .filter(Boolean)
     .join(' ');
 
+  const handleClick = (e) => {
+    if (disabled) return;
+    if (onClick) onClick(e);
+  };
+
   return (
-    <div className={buttonClasses} style={{ width, height, borderRadius }} onClick={onClick}>
+    <div
+      className={buttonClasses}
+      style={{ width, height, borderRadius }}
+      onClick={handleClick}
+      aria-disabled={disabled}
+    >
       <span className={s.innerSpan}>
         <div className={s.innderText} style={{ fontSize }}>
           {text}
