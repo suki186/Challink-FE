@@ -17,10 +17,41 @@
     }
   }
   .characterBox {
-    .characterImage {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    margin: 45px auto 20px auto;
+    .characterBody {
+      @include m.flex-row-center(center, center, null);
+      position: relative;
+      margin: 0 auto;
       width: 140px;
-      height: 188px;
-      margin: 49px 0 8px 111px;
+      height: 200px;
+      z-index: 2;
+    }
+    .characterTail {
+      position: absolute;
+      bottom: 30px;
+      left: 37%;
+      transform: translateX(-50%);
+      transform-origin: bottom right;
+      animation: tail-wag 1.3s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+    .characterFloor {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes tail-wag {
+    0% {
+      transform: translateX(-50%) rotate(-15deg);
+    }
+    100% {
+      transform: translateX(-50%) rotate(10deg);
     }
   }
 
@@ -46,14 +77,14 @@
       content: '';
       position: absolute;
       border-style: solid;
-      border-width: 0 11px 17px;
+      border-width: 0 7.8px 17px;
       border-color: $main-color1 transparent;
       display: block;
       width: 0;
       z-index: 1;
       top: -17px;
       left: 70%;
-      margin-left: -11px;
+      margin-left: -7.8px;
     }
 
     // 꼬리 내부
@@ -61,14 +92,14 @@
       content: '';
       position: absolute;
       border-style: solid;
-      border-width: 0 10.5px 16px;
+      border-width: 0 7.3px 16px;
       border-color: $color-white transparent;
       display: block;
       width: 0;
       z-index: 1;
       top: -16px;
       left: 70%;
-      margin-left: -10.3px;
+      margin-left: -7.3px;
     }
   }
 }

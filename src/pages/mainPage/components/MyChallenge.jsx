@@ -1,6 +1,8 @@
 import React from 'react';
 import s from './styles/MyChallenge.module.scss';
-import character from '../../../assets/images/character.svg';
+import Character from '@/assets/images/character_body.svg';
+import Tail from '@assets/images/character_tail.svg';
+import Floor from '../../../assets/images/character_floor.svg';
 import ChallengeCard from './ChallengeCard';
 
 const MyChallenge = () => {
@@ -12,7 +14,9 @@ const MyChallenge = () => {
         <p className={s.description}>다양한 경험을 직접 만들어보세요</p>
       </header>
       <div className={s.characterBox}>
-        <img src={character} className={s.characterImage} />
+        <img src={Character} className={s.characterBody} />
+        <img src={Tail} className={s.characterTail} />
+        <img src={Floor} className={s.characterFloor} />
       </div>
       <div className={s.quoteBubble}>
         <blockquote className={s.quoteText}>
