@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import s from './styles/AllChallenge.module.scss';
 import dummyData from '../datas/AllChallengeDummy.json';
 import img22 from '../datas/22.png';
-import chevron from '../../../assets/images/chevron_right_icon.svg';
+import chevron from '@assets/images/chevron_right_icon.svg';
+import ChallengeModal from '@components/challengeModal/ChallengeModal';
 
 const AllChallenge = () => {
   const navigate = useNavigate();
+  const [selectedChallenge, setSelectedChallenge] = useState(null);
 
   return (
     <section className={s.allChallengeContainer}>
@@ -27,7 +29,7 @@ const AllChallenge = () => {
       {/* 챌린지 리스트 */}
       <div className={s.challengeList}>
         {dummyData.items.map((c) => (
-          <article key={c.id} className={s.challengeItem}>
+          <article key={c.id} className={s.challengeItem} onClick={() => setSelectedChallenge(c)}>
             <img src={img22} className={s.coverImage} />
             <div className={s.contentBox}>
               <h3 className={s.challengeTitle}>{c.title}</h3>
@@ -40,6 +42,12 @@ const AllChallenge = () => {
             </div>
           </article>
         ))}
+        {selectedChallenge && (
+          <ChallengeModal
+            challenge={selectedChallenge}
+            onClose={() => setSelectedChallenge(null)} // 닫기 버튼
+          />
+        )}
       </div>
     </section>
   );
