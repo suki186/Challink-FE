@@ -17,7 +17,7 @@ const ExploreChallengePage = () => {
       : dummyData.items.filter((c) => c.category.name === selectedCategory);
 
   return (
-    <div className={s.exploreChallengePageContainer}>
+    <div className={s.exploreChallengePageContainer} style={{ marginBottom: '105px' }}>
       <Header />
       <CategoryFilter
         categories={pageCategories}

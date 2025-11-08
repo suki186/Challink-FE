@@ -86,7 +86,7 @@ const CreateChallengePage = () => {
   };
 
   return (
-    <div className={s.CreateChallengeContainer}>
+    <div className={s.CreateChallengeContainer} style={{ marginBottom: '122px' }}>
       <Header />
 
       {/* 챌린지 정보 */}

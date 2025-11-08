@@ -6,7 +6,7 @@ import AllChallenge from './components/AllChallenge';
 
 const MainPage = () => {
   return (
-    <div>
+    <div style={{ marginBottom: '105px' }}>
       <Header />
       <MyChallenge />
       <AllChallenge />
