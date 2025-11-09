@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './MyPage.module.scss';
 import GradientBox from '../../components/GradientBox.jsx';
 import LOGO from '@assets/images/logo_gradient.png';
@@ -14,8 +14,7 @@ import useAuthStore from '../../store/authStore.js';
 import { getCompletedChallengesApi, userInfoApi } from '../../apis/my/profileApi.js';
 import { logoutUserApi } from '../../apis/auth/authApi.js';
 import { useModal } from '../../hooks/useModal.js';
-
-const PAGE_SIZE = 10; // 한 번에 불러올 아이템 개수
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.js';
 
 const MyPage = () => {
   const { goTo } = useNavigation();
@@ -33,15 +32,17 @@ const MyPage = () => {
     closeModal: closePointModal,
   } = useModal();
 
-  //  무한 스크롤
-  const [completedList, setCompletedList] = useState([]); // 완료한 챌린지들
-  const [currentPage, setCurrentPage] = useState(1); // 다음에 불러올 페이지
-  const [totalItems, setTotalItems] = useState(0); // 총 아이템 개수
-  const triggerRef = useRef(null); // Observer가 감시할 대상
+  // 무한 스크롤 상태
+  const {
+    items: completedList, // 완료한 챌린지들
+    isLoading: listLoading,
+    triggerRef,
+    reset: resetList,
+    loadFirstPage, // 첫 페이지 로드 함수
+  } = useInfiniteScroll(getCompletedChallengesApi);
 
   // 로딩 State
   const [pageLoading, setPageLoading] = useState(true); // 페이지 전체(유저 정보) 로딩
-  const [listLoading, setListLoading] = useState(false); // 챌린지 목록 로딩
 
   // 모달이 열려있을때 뒷배경 스크롤 방지
   useBodyScrollLock(isPointModal);
@@ -70,67 +71,13 @@ const MyPage = () => {
     }
   }, [isLoggedIn, setUser]);
 
-  // 완료한 챌린지 목록 조회 (무한 스크롤)
-  const fetchCompletedChallenges = useCallback(
-    async (page) => {
-      if (listLoading) return;
-      setListLoading(true);
-
-      try {
-        const data = await getCompletedChallengesApi({
-          page: page,
-          page_size: PAGE_SIZE,
-        });
-        // 기존 목록에 새 목록을 이어붙임
-        setCompletedList((prev) => [...prev, ...data.items]);
-        setTotalItems(data.total); // 총 아이템 개수 갱신
-        setCurrentPage(page + 1); // 다음 페이지 번호 갱신
-        console.log(`완료 챌린지 ${page}페이지 조회 성공`);
-      } catch (error) {
-        console.error('완료한 챌린지 조회 실패:', error);
-      } finally {
-        setListLoading(false);
-      }
-    },
-    [listLoading],
-  );
-
   useEffect(() => {
     if (isLoggedIn) {
-      setCompletedList([]);
-      setCurrentPage(1);
-      setTotalItems(0);
-
-      fetchCompletedChallenges(1);
+      loadFirstPage();
+    } else {
+      resetList();
     }
-  }, [isLoggedIn]);
-
-  // Intersection Observer 설정
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        const hasMore = completedList.length < totalItems;
-        // 화면에 보이고 로딩 중이 아니며 더 불러올 아이템이 있을 때
-        if (entry.isIntersecting && !listLoading && hasMore) {
-          fetchCompletedChallenges(currentPage); // 다음 페이지 호출
-        }
-      },
-      { threshold: 1.0 }, // 100% 보였을 때
-    );
-
-    const currentTrigger = triggerRef.current;
-    if (currentTrigger) {
-      observer.observe(currentTrigger); // 감시 시작
-    }
-
-    // 감시 해제
-    return () => {
-      if (currentTrigger) {
-        observer.unobserve(currentTrigger);
-      }
-    };
-  }, [listLoading, currentPage, totalItems, completedList, fetchCompletedChallenges]);
+  }, [isLoggedIn, loadFirstPage, resetList]);
 
   // 로그아웃 함수
   const handleLogout = async () => {
