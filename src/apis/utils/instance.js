@@ -1,11 +1,12 @@
 import axios from 'axios';
+import useAuthStore from '../../store/authStore';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // ===== 공통 요청 인터셉터
 const onRequestFulfilled = (config) => {
-  // localStorage에서 토큰 가져오기
-  const accessToken = localStorage.getItem('accessToken');
+  // 스토어에서 토큰 가져오기
+  const { accessToken } = useAuthStore.getState();
 
   // 토큰이 있다면 헤더에 추가
   if (accessToken) {
@@ -29,7 +30,11 @@ const onResponseRejected = (error) => {
 
   if (response?.status === 401) {
     console.error('401 Unauthorized: 토큰이 만료되었거나 유효하지 않습니다.');
-    window.location.href = '/login';
+    useAuthStore.getState().logout(); // 스토어 비우기
+
+    if (window.location.pathname !== '/login') {
+      window.location.href = '/login';
+    }
   }
 
   return Promise.reject(error);

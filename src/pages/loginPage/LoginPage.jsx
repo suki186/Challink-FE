@@ -9,9 +9,11 @@ import AuthBox from '@components/authBox/AuthBox';
 import Footer from './components/Footer';
 import { CheckIcon, CheckFillIcon } from './components/icon/index';
 import AuthButton from '../../components/AuthButton';
+import useAuthStore from '../../store/authStore';
 
 const LoginPage = () => {
   const { goTo } = useNavigation();
+  const login = useAuthStore((state) => state.login);
 
   const savedEmail = localStorage.getItem('savedEmail') || '';
 
@@ -37,8 +39,9 @@ const LoginPage = () => {
       // setLoading(true);
       const result = await loginUserApi(form);
       console.log('로그인 성공', result);
-      // 액세스 토큰 저장
-      localStorage.setItem('accessToken', result.access_token);
+      // 스토어에 액세스 토큰 저장
+      login(result.access_token, result.user);
+
       // 이메일 저장
       if (form.remember_id) {
         localStorage.setItem('savedEmail', form.email.trim());
