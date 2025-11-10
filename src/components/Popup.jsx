@@ -1,8 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import s from './style/Popup.module.scss';
 import CHAR from '@assets/images/character.svg';
 import GradientButton from './GradientButton.jsx';
 
+const popupRoot = document.getElementById('popup-root');
 const Popup = ({
   type = 'default',
   title = '제목',
@@ -13,7 +15,7 @@ const Popup = ({
   const imageSection = type === 'fail' || type === 'success';
   const popupClasses = `${s.popupContainer} ${s[type]}`; // type에 따른 클래스명
 
-  return (
+  return ReactDOM.createPortal(
     <div className={s.overlay}>
       <div className={popupClasses}>
         <p className={s.title}>{title}</p>
@@ -35,7 +37,8 @@ const Popup = ({
           isWhite={type === 'fail'}
         />
       </div>
-    </div>
+    </div>,
+    popupRoot,
   );
 };
 
