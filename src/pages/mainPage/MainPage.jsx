@@ -10,7 +10,7 @@ const MainPage = () => {
     <div>
       <Header />
       <MyChallenge />
-      <ChallengeCard />
+      {/* <ChallengeCard /> */}
       <AllChallenge />
       <Footer />
     </div>

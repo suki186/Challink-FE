@@ -27,3 +27,9 @@ export const getPointHistoryForHook = async ({ page, page_size }) => {
     total: data.total_count,
   };
 };
+
+// 포인트 충전(POST)
+export const chargePointApi = async (data) => {
+  const res = await defaultInstance.post(`/challenges/wallet/charge/`, data);
+  return res.data;
+};

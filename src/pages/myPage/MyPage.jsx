@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import s from './MyPage.module.scss';
 import GradientBox from '../../components/GradientBox.jsx';
 import LOGO from '@assets/images/logo_gradient.png';
@@ -11,7 +11,11 @@ import { formatNumberWithCommas } from '../../utils/format.js';
 import useBodyScrollLock from '../../hooks/useBodyScrollLock.js';
 import useNavigation from '../../hooks/useNavigation.js';
 import useAuthStore from '../../store/authStore.js';
-import { getCompletedChallengesApi, userInfoApi } from '../../apis/my/profileApi.js';
+import {
+  chargePointApi,
+  getCompletedChallengesApi,
+  userInfoApi,
+} from '../../apis/my/profileApi.js';
 import { logoutUserApi } from '../../apis/auth/authApi.js';
 import { useModal } from '../../hooks/useModal.js';
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.js';
@@ -43,6 +47,7 @@ const MyPage = () => {
 
   // 로딩 State
   const [pageLoading, setPageLoading] = useState(true); // 페이지 전체(유저 정보) 로딩
+  const [isCharging, setIsCharging] = useState(false); // 충전 버튼 로딩 상태
 
   // 모달이 열려있을때 뒷배경 스크롤 방지
   useBodyScrollLock(isPointModal);
@@ -80,7 +85,7 @@ const MyPage = () => {
   }, [isLoggedIn, loadFirstPage, resetList]);
 
   // 로그아웃 함수
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     try {
       await logoutUserApi();
     } catch (error) {
@@ -89,7 +94,32 @@ const MyPage = () => {
       logout(); // 스토어 비우기
       goTo('/');
     }
-  };
+  }, [logout, goTo]);
+
+  // 포인트 충전 함수
+  const handleCharge = useCallback(async () => {
+    if (isCharging) return;
+    setIsCharging(true);
+
+    const chargeData = {
+      amount: 10000,
+      description: '계좌 이체 충전',
+    };
+
+    try {
+      const data = await chargePointApi(chargeData);
+      console.log('포인트 충전 성공');
+
+      // 스토어 업데이트
+      setUser({ point_balance: data.point_balance_after });
+      alert('10,000 포인트가 충전되었습니다.');
+    } catch (error) {
+      console.error('포인트 충전 실패:', error);
+      alert('충전에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsCharging(false);
+    }
+  }, [isCharging, setUser]);
 
   if (pageLoading) {
     return <div className={s.myPageContainer}>로딩 중...</div>;
@@ -168,10 +198,11 @@ const MyPage = () => {
           <GradientButton
             width="166px"
             height="40px"
-            text={`충전하기`}
+            text={isCharging ? '충전 중...' : '충전하기'}
             borderRadius="8px"
             fontSize="16px"
             isFilled={true}
+            onClick={handleCharge}
           />
           <GradientButton
             width="166px"
