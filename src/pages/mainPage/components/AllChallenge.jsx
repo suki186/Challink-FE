@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { challengeListApi } from '@apis/auth/challengeApi';
+import useNavigation from '../../../hooks/useNavigation';
 import s from './styles/AllChallenge.module.scss';
-import dummyData from '../datas/AllChallengeDummy.json';
-import img22 from '../datas/22.png';
 import chevron from '@assets/images/chevron_right_icon.svg';
 import ChallengeModal from '@components/challengeModal/ChallengeModal';
 
 const AllChallenge = () => {
-  const navigate = useNavigate();
-  const [selectedChallenge, setSelectedChallenge] = useState(null);
+  const { goTo } = useNavigation();
+  const [list, setList] = useState({ items: [] });
+  const [selectedChallengeId, setSelectedChallengeId] = useState(null);
+  // const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        // setIsLoading(true);
+        const result = await challengeListApi();
+        console.log('챌린지 조회 성공', result);
+        setList(result);
+      } catch (err) {
+        console.log(err);
+      }
+      //  finally {
+      //   setIsLoading(false);
+      // }
+    })();
+  }, []);
 
   return (
     <section className={s.allChallengeContainer}>
@@ -18,7 +35,7 @@ const AllChallenge = () => {
         <button
           className={s.moreButton}
           onClick={() => {
-            navigate('/explore');
+            goTo('/explore');
           }}
         >
           더보기
@@ -28,9 +45,13 @@ const AllChallenge = () => {
 
       {/* 챌린지 리스트 */}
       <div className={s.challengeList}>
-        {dummyData.items.map((c) => (
-          <article key={c.id} className={s.challengeItem} onClick={() => setSelectedChallenge(c)}>
-            <img src={img22} className={s.coverImage} />
+        {list.items.map((c) => (
+          <article
+            key={c.id}
+            className={s.challengeItem}
+            onClick={() => setSelectedChallengeId(c.id)}
+          >
+            <img src={c.cover_image} className={s.coverImage} />
             <div className={s.contentBox}>
               <h3 className={s.challengeTitle}>{c.title}</h3>
               <ul className={s.metaList}>
@@ -42,10 +63,10 @@ const AllChallenge = () => {
             </div>
           </article>
         ))}
-        {selectedChallenge && (
+        {selectedChallengeId && (
           <ChallengeModal
-            challenge={selectedChallenge}
-            onClose={() => setSelectedChallenge(null)} // 닫기 버튼
+            challengeId={selectedChallengeId}
+            onClose={() => setSelectedChallengeId(null)} // 닫기 버튼
           />
         )}
       </div>
