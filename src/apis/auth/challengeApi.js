@@ -17,6 +17,12 @@ export const joinChallengeApi = async (challengeId) => {
   return res.data;
 };
 
+// 모든 챌린지 목록
+export const challengeListApi = async () => {
+  const res = await defaultInstance.post(`challenges/`);
+  return res.data;
+};
+
 // 챌린지 검색
 export const inviteChallengeApi = async () => {
   const res = await defaultInstance.post(`invites/join/`);
