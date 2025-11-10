@@ -10,6 +10,7 @@ const MainPage = () => {
     <div>
       <Header />
       <MyChallenge />
+      <ChallengeCard />
       <AllChallenge />
       <Footer />
     </div>
