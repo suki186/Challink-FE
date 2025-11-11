@@ -28,8 +28,8 @@ const PERIOD_OPTIONS = Array.from({ length: 8 }, (_, i) => ({
 
 const FREQUENCY_OPTIONS = [
   { value: 'DAILY', label: '매일' },
-  { value: 'WEEKDAYS', label: '평일만' },
-  { value: 'WEEKENDS', label: '주말만' },
+  { value: 'WEEKDAYS', label: '주중' },
+  { value: 'WEEKENDS', label: '주말' },
   { value: '1_DAYS_PER_WEEK', label: '주 1일' },
   { value: '2_DAYS_PER_WEEK', label: '주 2일' },
   { value: '3_DAYS_PER_WEEK', label: '주 3일' },
@@ -98,13 +98,6 @@ const CreateChallengePage = () => {
   const ymdKST = (date) =>
     new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(date); // YYYY-MM-DD
   const addDays = (date, days) => new Date(date.getTime() + days * 86400000);
-  const parseWeeklyFreq = (value) => {
-    if (/_DAYS_PER_WEEK$/.test(value)) {
-      const n = Number(value.split('_')[0]);
-      return { isNDays: true, n };
-    }
-    return { isNDays: false, n: null };
-  };
 
   // --- (D) 상세 API 호출 useEffect ---
   // newChallengeId 변경 시 상세 API 호출
@@ -133,9 +126,21 @@ const CreateChallengePage = () => {
     e.preventDefault();
 
     const entryFeeNum = Number(String(fee).replace(/,/g, '').trim() || 0);
-    const { isNDays, n } = parseWeeklyFreq(frequency);
+    // const { isNDays, n } = parseWeeklyFreq(frequency);
     const start = new Date();
     const end = addDays(start, Number(durationWeeks) * 7);
+
+    // freq_type, freq_n_days
+    let freqTypeToSend = null;
+    let freqNDaysToSend = null;
+
+    if (frequency.includes('_DAYS_PER_WEEK')) {
+      freqTypeToSend = '주 N일';
+      freqNDaysToSend = Number(frequency.split('_')[0]);
+    } else {
+      freqTypeToSend = frequency;
+      freqNDaysToSend = null;
+    }
 
     const basePayload = {
       title: title.trim(),
@@ -143,9 +148,9 @@ const CreateChallengePage = () => {
       category_id: Number(categoryId),
       entry_fee: entryFeeNum,
       duration_weeks: Number(durationWeeks),
-      ...(isNDays
-        ? { freq_type: null, freq_n_days: n }
-        : { freq_type: frequency, freq_n_days: null }),
+      freq_type: freqTypeToSend,
+      freq_n_days: freqNDaysToSend,
+
       ai_condition_text: rule.trim(),
       settlement_method: settlementMethod,
       start_date: ymdKST(start),
@@ -173,7 +178,7 @@ const CreateChallengePage = () => {
         options = { multipart: true };
       } else {
         //  이미지가 없을 때: JSON으로 전송
-        payload = { ...basePayload, cover_image: null };
+        payload = { ...basePayload, cover_image: '' };
       }
 
       // createChallengeApi 호출, ID 저장
