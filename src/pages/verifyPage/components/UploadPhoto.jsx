@@ -57,6 +57,7 @@ const UploadPhoto = ({ challengeId }) => {
           title: '인증 실패',
           subtitle: `인증 조건 불일치, 도용, 중복 사용을\n점검해 주세요`,
         });
+        setPhoto(null);
       }
     } catch (err) {
       console.error('AI 인증 오류:', err);

@@ -3,7 +3,7 @@ import MY from '@assets/images/icons/my_icon.svg';
 import useAuthStore from '../../../store/authStore';
 
 const TodayPhotoBox = ({ name, src, userId }) => {
-  const currentUserId = useAuthStore((state) => state.user?.id);
+  const currentUserId = useAuthStore((state) => state.userId);
   const isCurrentUser = currentUserId && userId === currentUserId;
 
   return (
