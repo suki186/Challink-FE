@@ -42,6 +42,7 @@ const OngoingPage = () => {
     participants?.map((p) => ({
       src: p.display_thumbnail || NOPHOTO,
       name: p.name,
+      userId: p.user_id,
     })) || [];
 
   // 정산 정보 파싱
@@ -85,7 +86,7 @@ const OngoingPage = () => {
         <section className={s.todayPhotoGrid}>
           {todayPhotos.length > 0 ? (
             todayPhotos.map((item, index) => (
-              <TodayPhotoBox key={index} src={item.src} name={item.name} />
+              <TodayPhotoBox key={index} src={item.src} name={item.name} userId={item.userId} />
             ))
           ) : (
             <p style={{ color: '#bbb', textAlign: 'center', marginTop: '20px' }}>
