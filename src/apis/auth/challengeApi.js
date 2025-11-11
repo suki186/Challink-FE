@@ -12,14 +12,14 @@ export const createChallengeApi = async (payload) => {
 };
 
 // 챌린지 참가
-export const joinChallengeApi = async (challengeId) => {
-  const res = await defaultInstance.post(`challenges/${challengeId}/join/`);
+export const joinChallengeApi = async (challengeId, body) => {
+  const res = await defaultInstance.post(`challenges/${challengeId}/join/`, body);
   return res.data;
 };
 
 // 모든 챌린지 목록
 export const challengeListApi = async () => {
-  const res = await defaultInstance.post(`challenges/`);
+  const res = await defaultInstance.get(`challenges/`);
   return res.data;
 };
 
