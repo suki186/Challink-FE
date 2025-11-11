@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { challengeDetailApi, joinChallengeApi } from '@apis/auth/challengeApi';
+import React, { useState } from 'react';
+import { joinChallengeApi } from '@apis/auth/challengeApi';
 import useNavigation from '../../hooks/useNavigation';
 import s from './ChallengeModal.module.scss';
 import Popup from '../Popup';
@@ -8,30 +8,10 @@ import checkFillIcon from '../../assets/images/check_fill_icon.svg';
 import checkIcon from '../../assets/images/check_icon.svg';
 import GradientButton from '../../components/GradientButton';
 
-const ChallengeModal = ({ onClose, challengeId }) => {
+const ChallengeModal = ({ onClose, challengeData }) => {
   const { goTo } = useNavigation();
 
-  // API 데이터 관리
-  const [challenge, setChallenge] = useState(null);
-  // const [loading, setLoading] = useState(false);
-
   const [agreed, setAgreed] = useState(false);
-
-  // 모달 상태 관리
-  useEffect(() => {
-    // if (!challengeId) return; // 필요한 지 모르겠음
-    const fetchDetail = async () => {
-      try {
-        // setLoading(true);
-        const data = await challengeDetailApi(challengeId);
-        setChallenge(data);
-      } catch (err) {
-        console.log(err);
-      } // finally {
-      //   setLoading(false); }
-    };
-    fetchDetail();
-  }, [challengeId]); // challengeId가 바뀔 때마다 실행
 
   // 동의하기 버튼
   const handleAgreeClick = () => {
@@ -55,7 +35,7 @@ const ChallengeModal = ({ onClose, challengeId }) => {
     e.preventDefault();
     try {
       // 성공
-      const result = await joinChallengeApi(challengeId, { agree_terms: agreed });
+      const result = await joinChallengeApi(challengeData.id, { agree_terms: agreed });
       console.log(result);
     } catch (err) {
       if (err.response) {
@@ -97,30 +77,31 @@ const ChallengeModal = ({ onClose, challengeId }) => {
         </button>
 
         {/* 제목 */}
-        <h2 className={s.challengeTitle}>{challenge.title}</h2>
+        <h2 className={s.challengeTitle}>{challengeData.title}</h2>
 
         {/* 유저 정보 */}
         <div className={s.userInfo}>
-          <p className={s.userName}>{challenge.owner_name}님의 챌린지</p>
+          <p className={s.userName}>{challengeData.owner_name}님의 챌린지</p>
         </div>
 
         {/* 커버 */}
-        <img src={challenge.cover_image} className={s.coverImage} alt="" />
+        <img src={challengeData.cover_image} className={s.coverImage} alt="" />
 
         {/* 상세 카드 */}
         <div className={s.challengeInfoCard}>
           <h3 className={s.challengeInfo}>
-            {challenge.entry_fee.toLocaleString()}p 걸고 {challenge.duration_weeks}주 동안{' '}
-            {challenge.freq_type} 인증하기!
+            {challengeData.entry_fee.toLocaleString()}p 걸고 {challengeData.duration_weeks}주 동안{' '}
+            {challengeData.freq_type} 인증하기!
           </h3>
 
           <div className={s.meta}>
-            <p className={s.description}>{challenge.subtitle}</p>
-            <p className={s.aiCondition}>{challenge.ai_condition}</p>
+            <p className={s.description}>{challengeData.subtitle}</p>
+            <p className={s.aiCondition}>{challengeData.ai_condition}</p>
           </div>
 
           <p className={s.duration}>
-            {challenge.start_date.replaceAll('-', '.')} ~ {challenge.end_date.replaceAll('-', '.')}
+            {challengeData.start_date.replaceAll('-', '.')} ~{' '}
+            {challengeData.end_date.replaceAll('-', '.')}
           </p>
         </div>
 
