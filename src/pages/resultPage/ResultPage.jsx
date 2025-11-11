@@ -5,7 +5,7 @@ import data from './datas/resultDummy.json';
 
 const ResultPage = () => {
   return (
-    <ChallengeBody height="672px">
+    <ChallengeBody>
       <ResultChallenge data={data} />
     </ChallengeBody>
   );

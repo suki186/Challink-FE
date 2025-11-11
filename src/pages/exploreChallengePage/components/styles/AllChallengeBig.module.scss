@@ -7,28 +7,30 @@
   margin-top: 10px;
 
   .challengeList {
-    width: 362px;
+    width: 100%;
+    max-width: min(92.11vw, 372px);
     @include m.hide-scrollbar();
     display: grid;
     grid-template-columns: repeat(2, 1fr); // 가로 2열
     gap: 12px; // 카드 사이 여백
     overflow-y: scroll;
-    padding-bottom: 90px;
+    overflow: visible;
 
     .challengeItem {
       @include m.flex-column-center(flex-start, flex-start, 10px);
       flex-shrink: 0;
       width: 100%;
-      max-width: 44.5vw;
+      max-width: min(44.5vw, 180px);
       height: auto;
       border-radius: 8px;
       box-shadow: 8px 8px 12px rgba(67, 0, 209, 0.05);
+      overflow: visible;
     }
 
     .coverImage {
-      margin: 6px 6px 0 6px;
+      margin: 6px auto 0 auto;
       width: 100%;
-      max-width: 41.5vw;
+      max-width: min(41.5vw, 165px);
       height: 175px;
       object-fit: cover;
       border-radius: 8px;

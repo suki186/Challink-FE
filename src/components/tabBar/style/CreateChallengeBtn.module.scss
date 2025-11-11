@@ -4,12 +4,15 @@
 .buttonContainer {
   @include m.flex-row-center;
   @include m.button-click;
-
-  width: 55px;
-  height: 55px;
+  width: 100%;
+  max-width: min(15.27vw, 60px);
+  min-width: 50px;
+  height: 100%;
+  max-height: min(15.27vw, 60px);
+  min-height: 50px;
   border-radius: 100%;
   background-color: $color-white;
   border: 2px solid $main-color1;
-  margin-left: 6px;
+  margin-left: 7px;
   box-shadow: 0 0 8px 3px rgba(#4300d1, 0.1);
 }

@@ -16,7 +16,7 @@ const PointItem = ({ point }) => {
     <div className={s.pointItemContainer}>
       <p className={s.type}>{point.type}</p>
       <div className={s.info}>
-        <p className={s.title}>{point.title}</p>
+        <p className={s.title}>{point.title === 'charge' ? '포인트 충전' : point.title}</p>
         <p className={s.date}>{formattedDate}</p>
       </div>
       <div className={s.point} style={{ color: pointColor }}>

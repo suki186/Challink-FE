@@ -1,0 +1,22 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.authButton {
+  @include m.font-size-weight(18px, 600, 1.4);
+  width: 100%;
+  height: 60px;
+  background-color: $color-white;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 63, 62, 0.2) 46%,
+    rgba(246, 132, 132, 0.2) 100%
+  );
+  border: 1px solid $main-color1;
+  color: $main-color2;
+  border-radius: 16px;
+}
+.authButtonActive {
+  background-image: linear-gradient(90deg, rgba(255, 63, 62, 1) 46%, rgba(246, 132, 132, 1) 100%);
+  color: $color-white;
+  cursor: pointer;
+}

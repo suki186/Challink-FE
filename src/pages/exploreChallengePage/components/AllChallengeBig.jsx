@@ -1,14 +1,13 @@
 import React from 'react';
 import s from './styles/AllChallengeBig.module.scss';
-import img22 from '../datas/22.png';
 
-const AllChallenge = ({ challenges }) => {
+const AllChallenge = ({ challenges, onCardClick }) => {
   return (
     <section className={s.allChallengeContainer}>
       <div className={s.challengeList}>
         {challenges.map((c) => (
-          <article key={c.id} className={s.challengeItem}>
-            <img src={img22} className={s.coverImage} alt={c.title} />
+          <article key={c.id} className={s.challengeItem} onClick={() => onCardClick?.(c)}>
+            <img src={c.cover_image} className={s.coverImage} alt={c.title} />
             <div className={s.contentBox}>
               <h3 className={s.challengeTitle}>{c.title}</h3>
               <p className={s.challengeSubtitle}>{c.subtitle}</p>

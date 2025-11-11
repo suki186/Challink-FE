@@ -9,6 +9,12 @@
   cursor: pointer;
   transition: all 300ms ease;
 
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+    box-shadow: none;
+  }
+
   &:hover,
   &.filled {
     @include m.primary-gradient;

@@ -1,0 +1,12 @@
+@use '@styles/mixins' as m;
+@use '@styles/variables' as *;
+.headerContainer {
+  @include m.flex-column-center(center, flex, 6px);
+  width: 100%;
+  max-width: min(87.8vw, 360px);
+  margin: 24px auto 0 auto;
+  .headerComment {
+    @include m.font-size-weight(12px, 500, 1.4);
+    color: $gray-300;
+  }
+}

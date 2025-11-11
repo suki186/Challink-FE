@@ -16,6 +16,13 @@
 
   .pointItemBoxWrapper {
     @include m.flex-column-center(flex-start, center, 12px);
+
+    .scrollTrigger {
+      p {
+        color: $gray-300;
+        margin-top: 180px;
+      }
+    }
   }
 
   .pointItemBox {

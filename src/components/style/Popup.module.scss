@@ -9,7 +9,7 @@
   height: 100%;
   backdrop-filter: blur(3px);
   @include m.flex-column-center;
-  z-index: 1000;
+  z-index: 99999;
 }
 
 // 팝업 공통 스타일

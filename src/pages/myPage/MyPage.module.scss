@@ -90,6 +90,8 @@
   @include m.flex-column-center(center, flex-start, 12px);
 
   .endCards {
+    @include m.flex-column-center(center, center, 12px);
+
     width: 100%;
   }
 }
