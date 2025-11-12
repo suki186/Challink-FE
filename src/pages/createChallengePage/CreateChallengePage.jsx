@@ -65,11 +65,13 @@ const CreateChallengePage = () => {
   const [detailData, setDetailData] = useState(null);
   // const [isDetailLoading, setIsDetailLoading] = useState(false);
 
+  // API 호출 중복 방지
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // 핸들러 및 유틸 함수
   // 이미지 핸들러
   const handleFileClick = () => fileInputRef.current?.click();
 
-  // 2. handleFileChange 함수를 async로 변경하고 변환 로직을 추가합니다.
   const handleFileChange = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -172,6 +174,8 @@ const CreateChallengePage = () => {
   const handleCreateClick = async (e) => {
     e.preventDefault();
 
+    if (!isActive || isSubmitting) return;
+
     const entryFeeNum = Number(String(fee).replace(/,/g, '').trim() || 0);
     // const { isNDays, n } = parseWeeklyFreq(frequency);
     const start = new Date();
@@ -206,6 +210,8 @@ const CreateChallengePage = () => {
     };
 
     try {
+      setIsSubmitting(true);
+
       const fd = new FormData();
       Object.entries(basePayload).forEach(([k, v]) => {
         if (v !== undefined && v !== null) {
@@ -387,7 +393,7 @@ const CreateChallengePage = () => {
         <button
           className={`${s.createButton} ${isActive ? s.createButtonActive : ''}`}
           onClick={handleCreateClick}
-          disabled={!isActive}
+          disabled={!isActive || isSubmitting}
         >
           챌린지 만들기
         </button>
