@@ -8,8 +8,8 @@ import { useClickPosition } from '../../../hooks/useClickPosition';
 import { useCommentPositioning } from '../../../hooks/useCommentPositioning';
 import { formatDateToDots } from '../../../utils/format';
 import { createPhotoCommentApi, getPhotoDetailApi } from '../../../apis/challenge/albums';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { getFullImagePath } from '../../../utils/imagePath';
+import NOPHOTO from '@assets/images/no_photo.png';
 
 const PhotoDetail = ({ photo, onClose }) => {
   const { id: photoId } = photo;
@@ -25,11 +25,7 @@ const PhotoDetail = ({ photo, onClose }) => {
   const formattedDate = detail.created_at ? formatDateToDots(detail.created_at.slice(0, 10)) : '';
 
   // 이미지 경로
-  let fullImageUrl = detail.image;
-
-  if (fullImageUrl && !fullImageUrl.startsWith('http')) {
-    fullImageUrl = `${API_BASE_URL}${fullImageUrl}`;
-  }
+  const fullImageUrl = getFullImagePath(detail.image, NOPHOTO);
 
   // 기존 댓글 목록 불러오기
   useEffect(() => {

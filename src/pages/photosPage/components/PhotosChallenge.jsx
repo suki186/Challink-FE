@@ -1,8 +1,7 @@
 import React from 'react';
 import s from './style/PhotosChallenge.module.scss';
 import CHAR from '@assets/images/character_gradient.png';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { getFullImagePath } from '../../../utils/imagePath';
 
 const PhotosChallenge = ({ photoData, onPhotoClick }) => {
   if (!photoData || photoData.length === 0) {
@@ -17,11 +16,7 @@ const PhotosChallenge = ({ photoData, onPhotoClick }) => {
   return (
     <div className={s.photosContainer}>
       {photoData.map((photo) => {
-        let fullImageUrl = photo.image; // 이미지 경로
-
-        if (fullImageUrl && !fullImageUrl.startsWith('http')) {
-          fullImageUrl = `${API_BASE_URL}${fullImageUrl}`;
-        }
+        let fullImageUrl = getFullImagePath(photo.image);
 
         return (
           <img

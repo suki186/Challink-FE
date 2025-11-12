@@ -10,8 +10,7 @@ import TodayPhotoBox from './components/TodayPhotoBox';
 import GradientButton from '../../components/GradientButton';
 import ChallengeBody from '../challengeLayout/ChallengeBody';
 import { formatDateToDots } from '../../utils/format';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { getFullImagePath } from '../../utils/imagePath';
 
 const OngoingPage = () => {
   const { goTo } = useNavigation();
@@ -41,18 +40,11 @@ const OngoingPage = () => {
   const challengePeriod = `${formatDateToDots(start_date)} ~ ${formatDateToDots(end_date)}`;
 
   const todayPhotos =
-    participants?.map((p) => {
-      let imageSrc = p.latest_proof_image;
-      if (imageSrc && !imageSrc.startsWith('http')) {
-        imageSrc = `${API_BASE_URL}${imageSrc}`;
-      }
-
-      return {
-        src: imageSrc || NOPHOTO, // NOPHOTO는 http로 시작하지 않으므로 이 로직을 타지 않음
-        name: p.name,
-        userId: p.user_id,
-      };
-    }) || [];
+    participants?.map((p) => ({
+      src: getFullImagePath(p.latest_proof_image, NOPHOTO),
+      name: p.name,
+      userId: p.user_id,
+    })) || [];
 
   // 정산 정보 파싱
   let totalMoneyText = '총 참가비: N/A';
