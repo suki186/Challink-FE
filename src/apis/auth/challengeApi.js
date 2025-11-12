@@ -17,20 +17,22 @@ export const joinChallengeApi = async (challengeId, body) => {
   return res.data;
 };
 
-// 모든 챌린지 목록
-export const challengeListApi = async () => {
-  const res = await defaultInstance.get(`challenges/`);
-  return res.data;
-};
-
-// 챌린지 검색
-export const inviteChallengeApi = async () => {
-  const res = await defaultInstance.post(`invites/join/`);
+// 모든 챌린지 목록 , 검색 기능
+export const challengeListApi = async (params) => {
+  const res = await defaultInstance.get('/challenges/', {
+    params: params,
+  });
   return res.data;
 };
 
 // 챌린지 상세 조회 (팝업)
 export const challengeDetailApi = async (challengeId) => {
   const res = await defaultInstance.get(`/challenges/${challengeId}/`);
+  return res.data;
+};
+
+// 나의 챌린지 목록
+export const myChallengeListApi = async () => {
+  const res = await defaultInstance.get(`/challenges/my/`);
   return res.data;
 };
