@@ -57,6 +57,7 @@
 
   .quoteBubble {
     max-width: 70%;
+    width: fit-content;
     margin: 0 auto 40px auto;
     position: relative;
     padding: 10px 15px;
@@ -102,4 +103,7 @@
       margin-left: -7.3px;
     }
   }
+}
+.challengeList {
+  @include m.flex-column-center(center, center, 12px);
 }
