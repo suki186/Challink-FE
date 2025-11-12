@@ -5,13 +5,12 @@ import PhotosChallenge from './components/PhotosChallenge';
 import PhotoDetail from './components/PhotoDetail';
 import useBodyScrollLock from '../../hooks/useBodyScrollLock';
 import CategoryFilter from '../../components/CategoryFilter';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { getAllPhotosApi } from '../../apis/challenge/albums';
 
-const pageCategories = ['MY', '전체', '김동국', '김숙명', '박한성', '김국민'];
-
 const PhotosPage = () => {
+  const location = useLocation();
   const { id: challengeId } = useParams();
   const { userName: currentUserName } = useAuthStore();
 
@@ -20,24 +19,41 @@ const PhotosPage = () => {
 
   const [selectedPhoto, setSelectedPhoto] = useState(null); // 선택된 사진
   const [selectedCategory, setSelectedCategory] = useState('MY');
+  const [pageCategories, setPageCategories] = useState(['MY', '전체']);
 
   useBodyScrollLock(selectedPhoto);
+
+  // 카테고리 이름 설정
+  useEffect(() => {
+    if (location.state?.participants) {
+      const names = location.state.participants.map((p) => p.name);
+      const uniqueNames = ['MY', '전체', ...new Set(names)];
+      setPageCategories(uniqueNames);
+    } else {
+      const fetchPhotoNames = async () => {
+        try {
+          const data = await getAllPhotosApi(challengeId);
+          const names = data.map((p) => p.user_name);
+          const uniqueNames = ['MY', '전체', ...new Set(names)];
+          setPageCategories(uniqueNames);
+        } catch (err) {
+          console.error('참여자 이름 불러오기 실패:', err);
+        }
+      };
+      fetchPhotoNames();
+    }
+  }, [challengeId, location.state]);
 
   // 전체 사진 데이터 로딩
   useEffect(() => {
     if (!challengeId) return;
 
-    // API 호출 함수 정의
     const fetchPhotos = async () => {
       setIsLoading(true);
-
-      let nameParam = ''; // 이름 파라미터
+      let nameParam = '';
 
       if (selectedCategory === 'MY') {
         nameParam = currentUserName || '';
-        if (!nameParam) {
-          console.warn('로그인된 사용자 이름이 없습니다.');
-        }
       } else if (selectedCategory !== '전체') {
         nameParam = selectedCategory;
       }

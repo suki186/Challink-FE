@@ -13,10 +13,12 @@ import ChallengeBody from '../challengeLayout/ChallengeBody';
 import { formatDateToDots } from '../../utils/format';
 import { getFullImagePath } from '../../utils/imagePath';
 import { challengeEndApi } from '../../apis/challenge/result';
+import useAuthStore from '../../store/authStore';
 
 const OngoingPage = () => {
   const { goTo } = useNavigation();
   const location = useLocation();
+  const { userId } = useAuthStore();
   const { challengeData } = useOutletContext();
 
   const currentPath = location.pathname;
@@ -133,9 +135,31 @@ const OngoingPage = () => {
           <div className={s.twoButton}>
             <GradientButton
               text="인증하기"
-              onClick={() => goTo(`${currentPath}/verify`, { state: { ai_condition } })}
+              onClick={() =>
+                goTo(`${currentPath}/verify`, {
+                  state: {
+                    ai_condition,
+                    owner_id: participants.find((p) => p.is_owner)?.user_id,
+                    start_date: challengeData.start_date,
+                    end_date: challengeData.end_date,
+                  },
+                })
+              }
             />
-            <GradientButton text="도전앨범" onClick={() => goTo(`${currentPath}/photos`)} />
+            <GradientButton
+              text="도전앨범"
+              onClick={() => {
+                const otherParticipants = participants
+                  .filter((p) => p.user_id !== userId)
+                  .map((p) => ({ name: p.name, user_id: p.user_id }));
+
+                goTo(`${currentPath}/photos`, {
+                  state: {
+                    participants: otherParticipants,
+                  },
+                });
+              }}
+            />
           </div>
 
           <div className={s.moneyInfo}>
