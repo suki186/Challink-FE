@@ -44,7 +44,7 @@ const OngoingPage = () => {
     participants?.map((p) => {
       let imageSrc = p.latest_proof_image;
       if (imageSrc && !imageSrc.startsWith('http')) {
-        imageSrc = `${API_BASE_URL}media/${imageSrc}`;
+        imageSrc = `${API_BASE_URL}${imageSrc}`;
       }
 
       return {

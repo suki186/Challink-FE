@@ -4,9 +4,12 @@ import { useCallback } from 'react';
 const getPixelPosition = (pos, containerEl) => {
   if (!containerEl) return { top: 0, left: 0 };
   const rect = containerEl.getBoundingClientRect();
+  const x = pos.xRatio ?? pos.x ?? pos.x_ratio;
+  const y = pos.yRatio ?? pos.y ?? pos.y_ratio;
+
   return {
-    top: rect.top + pos.yRatio * rect.height + window.scrollY,
-    left: rect.left + pos.xRatio * rect.width + window.scrollX,
+    top: rect.top + y * rect.height + window.scrollY,
+    left: rect.left + x * rect.width + window.scrollX,
   };
 };
 

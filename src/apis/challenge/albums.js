@@ -16,7 +16,11 @@ export const getAllPhotosApi = async (challenge_id, name) => {
 
 // 챌린지 기록 사진 댓글 작성(POST)
 export const createPhotoCommentApi = async (photo_id, data) => {
-  const res = await defaultInstance.post(`/challenges/detail/${photo_id}/comments/`, data);
+  const res = await defaultInstance.post(`/challenges/detail/${photo_id}/comments/`, {
+    content: data.content,
+    x_ratio: data.x_ratio,
+    y_ratio: data.y_ratio,
+  });
   return res.data;
 };
 

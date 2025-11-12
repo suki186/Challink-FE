@@ -9,6 +9,8 @@ import { useCommentPositioning } from '../../../hooks/useCommentPositioning';
 import { formatDateToDots } from '../../../utils/format';
 import { createPhotoCommentApi, getPhotoDetailApi } from '../../../apis/challenge/albums';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const PhotoDetail = ({ photo, onClose }) => {
   const { id: photoId } = photo;
   const [detail, setDetail] = useState(photo);
@@ -22,6 +24,13 @@ const PhotoDetail = ({ photo, onClose }) => {
   // 날짜 형식 'YYYY.MM.DD'
   const formattedDate = detail.created_at ? formatDateToDots(detail.created_at.slice(0, 10)) : '';
 
+  // 이미지 경로
+  let fullImageUrl = detail.image;
+
+  if (fullImageUrl && !fullImageUrl.startsWith('http')) {
+    fullImageUrl = `${API_BASE_URL}${fullImageUrl}`;
+  }
+
   // 기존 댓글 목록 불러오기
   useEffect(() => {
     const fetchComments = async () => {
@@ -31,7 +40,15 @@ const PhotoDetail = ({ photo, onClose }) => {
       try {
         const detailData = await getPhotoDetailApi(photoId);
         setDetail(detailData);
-        setComments(detailData.comments || []); // 댓글 목록만 저장
+        setComments(
+          (detailData.comments || [])
+            .filter((c) => c.x_ratio !== null && c.y_ratio !== null)
+            .map((c) => ({
+              ...c,
+              x: c.x_ratio,
+              y: c.y_ratio,
+            })),
+        );
       } catch (err) {
         console.error('기존 댓글 로딩 실패:', err);
         setComments([]);
@@ -55,8 +72,8 @@ const PhotoDetail = ({ photo, onClose }) => {
 
     const commentData = {
       content: newComment.trim(),
-      x_ratio: clickedPos.x,
-      y_ratio: clickedPos.y,
+      x_ratio: clickedPos.xRatio,
+      y_ratio: clickedPos.yRatio,
     };
 
     try {
@@ -91,7 +108,7 @@ const PhotoDetail = ({ photo, onClose }) => {
 
         {/* 댓글 클릭 영역 */}
         <div className={s.photoWrapper}>
-          <img src={detail.image} alt="사진" width="100%" height="408px" />
+          <img src={fullImageUrl} alt="사진" width="100%" height="408px" />
           <div ref={containerRef} className={s.commentOverlay} onClick={handleClick} />
         </div>
 
