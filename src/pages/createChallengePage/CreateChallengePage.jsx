@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { createChallengeApi, challengeDetailApi } from '@apis/auth/challengeApi';
 import s from './components/styles/CreateChallengePage.module.scss';
 import Header from './components/Header';
@@ -90,7 +90,10 @@ const CreateChallengePage = () => {
   };
 
   // 버튼 활성화
-  const isBaseValid = useFormValidation({ title, fee, rule });
+  const validationFields = useMemo(() => {
+    return { title, fee, rule };
+  }, [title, fee, rule]);
+  const isBaseValid = useFormValidation(validationFields);
   const isActive =
     isBaseValid && !!categoryId && !!settlementMethod && !!durationWeeks && !!frequency;
 
