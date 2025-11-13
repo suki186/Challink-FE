@@ -41,10 +41,6 @@ const onResponseRejected = (error) => {
     console.error('401 Unauthorized: 토큰이 만료되었거나 유효하지 않습니다.');
 
     useAuthStore.getState().logout(); // 스토어 비우기
-
-    if (window.location.pathname !== '/login') {
-      window.location.href = '/login';
-    }
   }
 
   return Promise.reject(error);
