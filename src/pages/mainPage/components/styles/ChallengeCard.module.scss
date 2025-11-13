@@ -3,6 +3,7 @@
 
 .challengeCard {
   @include m.flex-row-center(flex-start, flex-start, null);
+  @include m.button-click(1);
   max-width: min(87.8vw, 385px);
   margin: 0 auto;
   width: 100%;

@@ -11,6 +11,7 @@
 
 .categoryButton {
   @include m.font-size-weight(14px, 400, 20px);
+  @include m.button-click(1);
   color: $main-color2;
   background-color: $gray-100;
   border: none;
