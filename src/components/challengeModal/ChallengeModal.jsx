@@ -7,6 +7,7 @@ import closeIcon from '../../assets/images/icon_close.svg';
 import checkFillIcon from '../../assets/images/check_fill_icon.svg';
 import checkIcon from '../../assets/images/check_icon.svg';
 import GradientButton from '../../components/GradientButton';
+import DefaultPhoto from '@assets/images/no_photo.png';
 
 const ChallengeModal = ({ onClose, challengeData }) => {
   const { goTo } = useNavigation();
@@ -28,13 +29,17 @@ const ChallengeModal = ({ onClose, challengeData }) => {
     setShowPopup(false);
     goTo('/');
   };
+  // 중복 클릭 방지
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 도전하기 버튼
   const handleSubmit = async (e) => {
-    if (!agreed) return;
     e.preventDefault();
+    if (!agreed || isSubmitting) return;
+
     try {
-      // 성공
+      setIsSubmitting(true);
+
       const result = await joinChallengeApi(challengeData.id, { agree_terms: agreed });
       console.log(result);
       onClose();
@@ -64,6 +69,9 @@ const ChallengeModal = ({ onClose, challengeData }) => {
       } else {
         setApiError('인터넷 연결을 확인해주세요.');
       }
+
+      setIsSubmitting(false); // 실패시 버튼 재활성화
+
       // } finally {
       //   setLoading(false);
     }
@@ -86,15 +94,25 @@ const ChallengeModal = ({ onClose, challengeData }) => {
         </div>
 
         {/* 커버 */}
-        <img src={challengeData.cover_image} className={s.coverImage} alt="" />
+        {challengeData.cover_image == null ? (
+          <img src={DefaultPhoto} alt={challengeData.title} className={s.coverImage} />
+        ) : (
+          <img src={challengeData.cover_image} alt={challengeData.title} className={s.coverImage} />
+        )}
 
         {/* 상세 카드 */}
         <div className={s.challengeInfoCard}>
-          <h3 className={s.challengeInfo}>
-            {challengeData.entry_fee.toLocaleString()}p 걸고 {challengeData.duration_weeks}주 동안{' '}
-            {challengeData.freq_type} 인증하기!
-          </h3>
-
+          {challengeData.freq_n_days == null ? (
+            <h3 className={s.challengeInfo}>
+              {challengeData.entry_fee.toLocaleString()}p 걸고 {challengeData.duration_weeks}주 동안{' '}
+              {challengeData.freq_type} 인증하기!
+            </h3>
+          ) : (
+            <h3 className={s.challengeInfo}>
+              {challengeData.entry_fee.toLocaleString()}p 걸고 {challengeData.duration_weeks}주 동안
+              주 {challengeData.freq_n_days}일 인증하기!
+            </h3>
+          )}
           <div className={s.meta}>
             <p className={s.description}>{challengeData.subtitle}</p>
             <p className={s.aiCondition}>{challengeData.ai_condition}</p>
