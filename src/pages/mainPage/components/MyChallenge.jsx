@@ -24,6 +24,7 @@ const MyChallenge = () => {
           page_size: 30,
         };
         const result = await myChallengeListApi(params);
+        console.log('나의 챌린지 조회 성공', result);
         setMyChallenges(result);
       } catch (err) {
         console.error('나의 챌린지 목록 로딩 실패:', err);
