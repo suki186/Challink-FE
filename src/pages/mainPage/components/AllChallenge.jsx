@@ -11,7 +11,7 @@ const AllChallenge = () => {
   const openModal = useModalStore((state) => state.openModal);
   const [list, setList] = useState({ items: [] });
 
-  // 🔹 챌린지 목록 불러오기
+  // 챌린지 목록 불러오기
   useEffect(() => {
     (async () => {
       try {
@@ -24,7 +24,7 @@ const AllChallenge = () => {
     })();
   }, []);
 
-  // 🔹 카드 클릭 시 처리 (상세 + 이동/모달)
+  // 카드 클릭 시 처리
   const handleChallengeClick = async (id) => {
     try {
       const data = await challengeDetailApi(id);
