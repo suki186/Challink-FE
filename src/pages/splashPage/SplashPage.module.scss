@@ -1,0 +1,23 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as *;
+
+.splashPageContainer {
+  @include m.flex-column-center(center, center, null);
+  width: min(100vw, 440px);
+  height: 100dvh;
+  background: var(--second, linear-gradient(98deg, #ff3f3e 43.66%, #ff7b7b 116.16%));
+  animation: shrinkAndFade 2s ease-out none;
+}
+
+.splashLogo {
+  margin: 0 auto;
+}
+
+@keyframes shrinkAndFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

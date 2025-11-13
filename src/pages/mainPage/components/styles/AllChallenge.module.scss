@@ -32,6 +32,7 @@
     overflow-x: scroll;
 
     .challengeItem {
+      @include m.button-click(1);
       flex-shrink: 0;
       width: 140px;
       height: 180px;

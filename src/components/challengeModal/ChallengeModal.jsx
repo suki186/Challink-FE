@@ -141,15 +141,17 @@ const ChallengeModal = ({ onClose, challengeData }) => {
         </div>
 
         {/* 도전하기: 동의해야 활성화 */}
-        <GradientButton
-          width="255px"
-          height="48px"
-          text={isSubmitting ? '도전 중...' : '도전하기'}
-          fontSize="14px"
-          isFilled={true}
-          onClick={handleSubmit}
-          disabled={!agreed || isSubmitting}
-        />
+        <div className={s.buttonSpacer}>
+          <GradientButton
+            width="255px"
+            height="48px"
+            text={isSubmitting ? '도전 중...' : '도전하기'}
+            fontSize="14px"
+            isFilled={true}
+            onClick={handleSubmit}
+            disabled={!agreed || isSubmitting}
+          />
+        </div>
         {/* 팝업 조건부 렌더링 */}
         {showPopup && (
           <Popup

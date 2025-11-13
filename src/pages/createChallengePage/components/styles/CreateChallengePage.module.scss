@@ -79,6 +79,7 @@
     @include m.flex-column-center(flex-start, center, 12px);
     padding: 8.5px;
     .categoryButton {
+      @include m.button-click(1);
       width: 44px;
       height: 44px;
       border-radius: 4px;
@@ -87,6 +88,7 @@
     }
   }
   .categoryButtonActive {
+    @include m.button-click(1);
     border-radius: 4px;
     background-image: linear-gradient(
       90deg,
@@ -108,6 +110,7 @@
 
   .settlementButton {
     @include m.flex-column-center(center, flex-start, null);
+    @include m.button-click(1);
     padding: 10px 14px;
     width: 100%;
     height: 37px;
@@ -144,6 +147,7 @@
 
   .cancelButton {
     @include m.font-size-weight(18px, 600, 1.4);
+    @include m.button-click(1);
     width: 100%;
     max-width: min(22.74vw, 100px);
     height: 100%;
@@ -154,6 +158,7 @@
   }
   .createButton {
     @include m.font-size-weight(18px, 600, 1.4);
+    @include m.button-click(1);
     width: 100%;
     height: 100%;
     background-color: $color-white;

@@ -18,6 +18,7 @@
 
     .challengeItem {
       @include m.flex-column-center(flex-start, flex-start, 10px);
+      @include m.button-click(1);
       flex-shrink: 0;
       width: 100%;
       max-width: min(44.5vw, 180px);
