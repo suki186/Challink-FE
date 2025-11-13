@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter, Navigate } from 'react-router-dom';
 import '@styles/global.scss';
+import SplashPage from './pages/splashPage/SplashPage';
 import LoginPage from './pages/loginPage/LoginPage';
 import SignupPage from './pages/signupPage/SignupPage';
 import Layout from './components/layout/Layout';
@@ -15,6 +16,7 @@ import PhotosPage from './pages/photosPage/PhotosPage';
 import ResultPage from './pages/resultPage/ResultPage';
 
 /*
+    SplashPage: 스플래시 페이지
     LoginPage: 로그인 페이지
     SignupPage: 회원가입 페이지
     MainPage: 메인 페이지
@@ -26,6 +28,7 @@ import ResultPage from './pages/resultPage/ResultPage';
 */
 const router = createBrowserRouter([
   // Layout 밖 페이지
+  { path: '/splash', element: <SplashPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/signup', element: <SignupPage /> },
 
@@ -34,7 +37,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { path: '', element: <Navigate to="main" replace /> },
+      { path: '', element: <Navigate to="splash" replace /> },
       { path: 'main', element: <MainPage /> },
       { path: 'explore', element: <ExploreChallengePage /> },
       { path: 'challenge/create', element: <CreateChallengePage /> },
