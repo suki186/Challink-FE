@@ -127,7 +127,13 @@ const OngoingPage = () => {
         <section className={s.todayPhotoGrid}>
           {todayPhotos.length > 0 ? (
             todayPhotos.map((item, index) => (
-              <TodayPhotoBox key={index} src={item.src} name={item.name} userId={item.userId} />
+              <TodayPhotoBox
+                key={index}
+                src={item.src}
+                name={item.name}
+                userId={item.userId}
+                onClick={() => goTo(`${currentPath}/photos`)}
+              />
             ))
           ) : (
             <p style={{ color: '#bbb', textAlign: 'center', marginTop: '20px' }}>
