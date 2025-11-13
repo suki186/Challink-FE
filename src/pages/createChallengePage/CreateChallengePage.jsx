@@ -14,6 +14,7 @@ import Category4 from '@assets/images/category_4.svg';
 import useNavigation from '@hooks/useNavigation';
 import ChallengeModal from '@components/challengeModal/ChallengeModal.jsx';
 import useFormValidation from '../../hooks/useFormValidation';
+import Popup from '../../components/Popup';
 
 const CATEGORIES = [
   { id: 1, key: 'WORKOUT', label: '운동', src: Category1 },
@@ -41,6 +42,17 @@ const FREQUENCY_OPTIONS = [
 
 const CreateChallengePage = () => {
   const { goBack, goTo } = useNavigation();
+
+  // 에러/로딩 상태
+  const [apiError, setApiError] = useState('');
+  const [errorTitle, setErrorTitle] = useState('');
+
+  // 팝업 확인 버튼
+  const [showPopup, setShowPopup] = useState(false);
+  const handlePopupConfirm = () => {
+    setShowPopup(false);
+    goTo('/profile');
+  };
 
   // 챌린지 생성 데이터 state
   const [title, setTitle] = useState('');
@@ -163,10 +175,11 @@ const CreateChallengePage = () => {
         const data = await challengeDetailApi(newChallengeId);
         setDetailData(data); // API 응답 state에 저장
       } catch (err) {
-        console.error('챌린지 상세 조회 실패:', err);
-      } // finally {
-      // setIsDetailLoading(false);
-      // }
+        console.log('챌린지 상세 API 호출 실패', err);
+        // finally {
+        // setIsDetailLoading(false);
+        // }
+      }
     })();
   }, [newChallengeId]); // newChallengeId가 바뀔 때마다 실행
 
@@ -235,6 +248,23 @@ const CreateChallengePage = () => {
       goTo(`/challenge/${result.challenge_id}`);
     } catch (err) {
       console.log('챌린지 생성 실패', err);
+
+      if (err) {
+        const { status, data } = err.response;
+        setShowPopup(true);
+
+        if (status === 401) {
+          setApiError(data.message || '인증이 누락되었습니다.');
+          setErrorTitle('인증 누락');
+        } else if (status === 409) {
+          setApiError(data.message || '포인트가 부족합니다.');
+          setErrorTitle('포인트 부족');
+        } else {
+          setApiError('서버에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+        }
+      } else {
+        setApiError('인터넷 연결을 확인해주세요.');
+      }
     }
   };
 
@@ -402,6 +432,17 @@ const CreateChallengePage = () => {
       {/* 모달 렌더링 조건 detailData가 있고 (API 응답 완료), is_joined가 false인 (미참여) 경우 */}
       {detailData && !detailData.my_membership.is_joined && (
         <ChallengeModal challengeData={detailData} onClose={handleCloseModal} />
+      )}
+
+      {/* 팝업 조건부 렌더링 */}
+      {showPopup && (
+        <Popup
+          type="success"
+          title={errorTitle}
+          subtitle={apiError}
+          buttonText="확인"
+          onClick={handlePopupConfirm}
+        />
       )}
     </div>
   );

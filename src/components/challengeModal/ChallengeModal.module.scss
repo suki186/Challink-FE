@@ -50,7 +50,7 @@
   .userInfo {
     @include m.flex-row-center(center, center, null);
     width: 100%;
-    max-width: min(66.92vw, 300px);
+    max-width: min(75vw, 320px);
     height: 48px;
     border-radius: 12px;
     background-color: #333333;
@@ -62,7 +62,7 @@
   }
   .coverImage {
     width: 100%;
-    max-width: min(66.92vw, 300px);
+    max-width: min(75vw, 320px);
     height: 175px;
     border-radius: 8px;
     border: 1px solid $gray-200;
@@ -71,11 +71,11 @@
   }
   .challengeInfoCard {
     width: 100%;
-    max-width: min(66.92vw, 300px);
+    max-width: min(75vw, 320px);
     height: auto;
     border-radius: 12px;
     background-color: #333333;
-    padding: 16px 12px 17px 12px;
+    padding: 14px 11px 15px 11px;
 
     .challengeInfo {
       @include m.font-size-weight(16px, 500, 1.6);
@@ -91,17 +91,21 @@
     }
   }
   .agreeContainer {
-    margin: 12px 0 44px 7.5px;
+    margin: 12px 0 0 7.5px;
     width: 100%;
-    max-width: min(66.92vw, 300px);
+    max-width: min(75vw, 320px);
 
     .agreeButton {
       @include m.flex-row-center(flex, center, 6px);
       @include m.font-size-weight(14px, 400, 22px);
+      @include m.button-click(1);
       color: $color-white;
       border: none;
       background: none;
       outline: none;
     }
+  }
+  .buttonSpacer {
+    padding: 25px 0 30px 0;
   }
 }
