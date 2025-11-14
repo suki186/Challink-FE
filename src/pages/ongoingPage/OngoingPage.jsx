@@ -84,7 +84,7 @@ const OngoingPage = () => {
   const todayPhotos =
     participants?.map((p) => ({
       src: getFullImagePath(p.has_proof_today ? p.latest_proof_image : null, NOPHOTO),
-      name: p.name,
+      name: p.user_id === userId ? 'MY' : p.name,
       userId: p.user_id,
     })) || [];
 
@@ -141,7 +141,17 @@ const OngoingPage = () => {
                 src={item.src}
                 name={item.name}
                 userId={item.userId}
-                onClick={() => goTo(`${currentPath}/photos`)}
+                onClick={() => {
+                  const otherParticipants = participants
+                    .filter((p) => p.user_id !== userId)
+                    .map((p) => ({ name: p.name, user_id: p.user_id }));
+
+                  goTo(`${currentPath}/photos`, {
+                    state: {
+                      participants: otherParticipants,
+                    },
+                  });
+                }}
               />
             ))
           ) : (
