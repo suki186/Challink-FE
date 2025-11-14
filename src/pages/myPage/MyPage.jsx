@@ -113,7 +113,7 @@ const MyPage = () => {
 
       // 스토어 업데이트
       setUser({ point_balance: data.point_balance_after });
-      alert('10,000 포인트가 충전되었습니다.');
+      alert('50,000 포인트가 충전되었습니다.');
     } catch (error) {
       console.error('포인트 충전 실패:', error);
       alert('충전에 실패했습니다. 다시 시도해주세요.');
