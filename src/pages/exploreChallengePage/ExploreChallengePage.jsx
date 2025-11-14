@@ -101,10 +101,7 @@ const ExploreChallengePage = () => {
           !isInviteCodeSearch && (
             <div className={s.emptyContainer}>
               <img src={Character} alt="캐릭터" style={{ width: '83px' }} />
-              <p>
-                검색한 챌린지가 없어요.
-                <br /> 직접 만들어 시작해 보세요!
-              </p>
+              <p>{`챌린지가 없어요.\n직접 만들어 시작해 보세요!`}</p>
             </div>
           )
         )}
