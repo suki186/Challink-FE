@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { challengeRewardsApi, claimPointApi } from '../../apis/challenge/result';
 import useNavigation from '../../hooks/useNavigation';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const ResultPage = () => {
   const { id } = useParams();
@@ -52,7 +53,7 @@ const ResultPage = () => {
   if (loading)
     return (
       <ChallengeBody>
-        <p>불러오는 중...</p>
+        <LoadingSpinner />
       </ChallengeBody>
     );
   if (error)
@@ -113,20 +114,27 @@ const ResultPage = () => {
             ))}
           </div>
 
-          {/* 보상받기 버튼 */}
-          {data.status === 'ready' && my.can_claim && (
-            <GradientButton
-              width="196px"
-              text={claiming ? '지급 중...' : '보상받기'}
-              borderRadius="12px"
-              onClick={handleClaim}
-            />
-          )}
-          {data.status === 'paid' && (
-            <p className={s.alreadyClaimed}>
+          {/* 보상받기, 도전앨범 버튼 */}
+          <div className={s.Buttons}>
+            {data.status === 'ready' && data.my.can_claim && (
+              <GradientButton
+                width="196px"
+                text={claiming ? '지급 중...' : '보상받기'}
+                borderRadius="12px"
+                onClick={handleClaim}
+              />
+            )}
+            {(data.status === 'paid' || data.my.can_claim === false) && (
               <GradientButton width="196px" text="정산완료!" borderRadius="12px" disabled={true} />
-            </p>
-          )}
+            )}
+            <GradientButton
+              width="125px"
+              height="48px"
+              text="도전앨범"
+              borderRadius="12px"
+              onClick={() => goTo(`/challenge/${id}/photos`)}
+            />
+          </div>
         </div>
       </ChallengeBody>
     );

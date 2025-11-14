@@ -4,7 +4,7 @@ import s from './styles/Header.module.scss';
 import Logo from '@components/Logo.jsx';
 import Popup from '../../../components/Popup';
 import SearchBar from '@components/searchBar/SearchBar.jsx';
-import { challengeListApi, challengeDetailApi } from '@apis/auth/challengeApi'; // ✅ 1. API 2개 임포트
+import { challengeListApi, challengeDetailApi } from '@apis/auth/challengeApi';
 import useModalStore from '@store/modalStore';
 import useAuthStore from '../../../store/authStore';
 

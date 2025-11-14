@@ -14,6 +14,7 @@ import { formatDateToDots } from '../../utils/format';
 import { getFullImagePath } from '../../utils/imagePath';
 import { challengeEndApi } from '../../apis/challenge/result';
 import useAuthStore from '../../store/authStore';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const OngoingPage = () => {
   const { goTo } = useNavigation();
@@ -75,9 +76,14 @@ const OngoingPage = () => {
   const todayDate = progress_summary ? formatDateToDots(progress_summary.date) : '';
   const challengePeriod = `${formatDateToDots(start_date)} ~ ${formatDateToDots(end_date)}`;
 
+  // 현재 로그인한 유저의 참여 정보
+  const myParticipationInfo = participants?.find((p) => p.user_id === userId);
+  // 오늘 인증했는지
+  const hasUserVerifiedToday = myParticipationInfo?.has_proof_today || false;
+
   const todayPhotos =
     participants?.map((p) => ({
-      src: getFullImagePath(p.latest_proof_image, NOPHOTO),
+      src: getFullImagePath(p.has_proof_today ? p.latest_proof_image : null, NOPHOTO),
       name: p.name,
       userId: p.user_id,
     })) || [];
@@ -103,6 +109,14 @@ const OngoingPage = () => {
     }
   };
 
+  if (!challengeData) {
+    return (
+      <div className={s.todayChallenge}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <ChallengeBody>
       <div className={s.todayChallenge}>
@@ -122,7 +136,13 @@ const OngoingPage = () => {
         <section className={s.todayPhotoGrid}>
           {todayPhotos.length > 0 ? (
             todayPhotos.map((item, index) => (
-              <TodayPhotoBox key={index} src={item.src} name={item.name} userId={item.userId} />
+              <TodayPhotoBox
+                key={index}
+                src={item.src}
+                name={item.name}
+                userId={item.userId}
+                onClick={() => goTo(`${currentPath}/photos`)}
+              />
             ))
           ) : (
             <p style={{ color: '#bbb', textAlign: 'center', marginTop: '20px' }}>
@@ -134,7 +154,8 @@ const OngoingPage = () => {
         <section className={s.challengeButtom}>
           <div className={s.twoButton}>
             <GradientButton
-              text="인증하기"
+              text={hasUserVerifiedToday ? '인증 완료' : '인증하기'}
+              disabled={hasUserVerifiedToday}
               onClick={() =>
                 goTo(`${currentPath}/verify`, {
                   state: {

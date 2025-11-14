@@ -7,6 +7,7 @@ import s from './components/styles/SignupPage.module.scss';
 import Header from './components/Header';
 import AuthBox from '@components/authBox/AuthBox';
 import AuthButton from '@components/AuthButton';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const SignupPage = () => {
   const { goTo } = useNavigation();
@@ -23,7 +24,7 @@ const SignupPage = () => {
   // 에러/로딩 상태
   const [apiError, setApiError] = useState('');
   const [emailError, setEmailError] = useState('');
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onChange = (key) => (e) => {
     const value = e.target.value;
@@ -36,7 +37,7 @@ const SignupPage = () => {
     setApiError('');
     setEmailError('');
     try {
-      // setLoading(true);
+      setLoading(true);
       const result = await signupUserApi(form);
       console.log('회원가입 성공!', result);
       goTo('/login');
@@ -53,10 +54,18 @@ const SignupPage = () => {
       } else {
         setApiError('인터넷 연결을 확인해주세요.');
       }
-      // } finally {
-      //   setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className={s.signUpFormContainer}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div>

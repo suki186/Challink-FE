@@ -32,6 +32,7 @@ const useAuthStore = create(
       //localStorage에 저장할 상태
       partialize: (state) => ({
         accessToken: state.accessToken,
+        user: state.user,
         userId: state.user?.id || null,
         userName: state.user?.name || null,
         isLoggedIn: state.isLoggedIn,

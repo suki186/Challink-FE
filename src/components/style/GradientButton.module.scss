@@ -21,6 +21,11 @@
     border-color: transparent;
     box-shadow: 0px 0px 18px 0px rgba(255, 61, 61, 0.35);
 
+    // blueshadow={true}
+    &.blueshadow {
+      box-shadow: 0 8px 26px 0 rgba(0, 94, 255, 0.06);
+    }
+
     .innerSpan {
       background: none;
     }

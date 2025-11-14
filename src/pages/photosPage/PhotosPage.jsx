@@ -8,6 +8,7 @@ import CategoryFilter from '../../components/CategoryFilter';
 import { useLocation, useParams } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { getAllPhotosApi } from '../../apis/challenge/albums';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const PhotosPage = () => {
   const location = useLocation();
@@ -80,6 +81,14 @@ const PhotosPage = () => {
   const handleCloseOverlay = () => {
     setSelectedPhoto(null);
   };
+
+  if (isLoading) {
+    return (
+      <div className={s.PhotosPageContainer}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <>

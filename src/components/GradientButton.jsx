@@ -10,6 +10,7 @@ const GradientButton = ({
   isWhite = false,
   fontSize = '20px',
   disabled = false,
+  blueShadow = false,
   onClick,
 }) => {
   const computedFilled = disabled ? false : (isFilled ?? true);
@@ -19,6 +20,7 @@ const GradientButton = ({
     computedFilled ? s.filled : '',
     isWhite ? s.white : '',
     disabled ? s.disabled : '',
+    blueShadow ? s.blueshadow : '',
   ]
     .filter(Boolean)
     .join(' ');

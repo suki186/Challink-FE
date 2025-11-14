@@ -5,17 +5,18 @@ import Character from '@/assets/images/character_body.svg';
 import Tail from '@assets/images/character_tail.svg';
 import Floor from '../../../assets/images/character_floor.svg';
 import ChallengeCard from './ChallengeCard';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 
 const MyChallenge = () => {
   // API 데이터 state
   const [myChallenges, setMyChallenges] = useState({ items: [] });
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   // API 호출
   useEffect(() => {
     (async () => {
       try {
-        // setIsLoading(true);
+        setIsLoading(true);
         // 파라미터 객체
         const params = {
           status: 'active',
@@ -28,14 +29,22 @@ const MyChallenge = () => {
         setMyChallenges(result);
       } catch (err) {
         console.error('나의 챌린지 목록 로딩 실패:', err);
-      } // finally {
-      //   setIsLoading(false);
-      // }
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, []); // 마운트 시 1회 실행
 
   //  챌린지 개수 확인
   const challengeCount = myChallenges.items.length;
+
+  if (isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <section className={s.myChallengeContainer}>
