@@ -103,7 +103,7 @@ const MyPage = () => {
     setIsCharging(true);
 
     const chargeData = {
-      amount: 10000,
+      amount: 50000,
       description: '충전',
     };
 
