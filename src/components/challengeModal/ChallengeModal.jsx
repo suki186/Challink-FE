@@ -27,7 +27,8 @@ const ChallengeModal = ({ onClose, challengeData }) => {
   const [showPopup, setShowPopup] = useState(false);
   const handlePopupConfirm = () => {
     setShowPopup(false);
-    goTo('/');
+    onClose();
+    goTo('/profile');
   };
   // 중복 클릭 방지
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,7 +72,6 @@ const ChallengeModal = ({ onClose, challengeData }) => {
       } else {
         setApiError('인터넷 연결을 확인해주세요.');
       }
-    } finally {
       setIsSubmitting(false);
     }
   };
