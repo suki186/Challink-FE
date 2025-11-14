@@ -69,18 +69,15 @@ const CreateChallengePage = () => {
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
 
-  // 챌린지 모달, api state
   // 생성된 챌린지 ID
   const [newChallengeId, setNewChallengeId] = useState(null);
 
   // 상세 API 응답 데이터
   const [detailData, setDetailData] = useState(null);
-  // const [isDetailLoading, setIsDetailLoading] = useState(false);
 
   // API 호출 중복 방지
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 핸들러 및 유틸 함수
   // 이미지 핸들러
   const handleFileClick = () => fileInputRef.current?.click();
 
@@ -100,10 +97,9 @@ const CreateChallengePage = () => {
         const conversionResult = await heic2any({
           blob: file,
           toType: 'image/jpeg', // JPEG로 변환
-          quality: 0.8, // 품질 설정 (선택 사항)
+          quality: 0.8,
         });
 
-        // heic2any는 배열을 반환할 수 있으므로 첫 번째 항목을 사용
         const convertedBlob = Array.isArray(conversionResult)
           ? conversionResult[0]
           : conversionResult;
@@ -112,7 +108,6 @@ const CreateChallengePage = () => {
         const originalName = file.name.split('.').slice(0, -1).join('.');
         const newFileName = `${originalName}.jpeg`;
 
-        // 변환된 Blob을 File 객체로 다시 만듭니다.
         const convertedFile = new File([convertedBlob], newFileName, {
           type: convertedBlob.type,
           lastModified: Date.now(),
@@ -143,7 +138,7 @@ const CreateChallengePage = () => {
 
   // 모달 닫기 핸들러
   const handleCloseModal = () => {
-    setNewChallengeId(null); // ID를 null로 -> useEffect 트리거 -> detailData도 null이 됨
+    setNewChallengeId(null);
   };
 
   // 버튼 활성화
@@ -159,21 +154,18 @@ const CreateChallengePage = () => {
     new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(date); // YYYY-MM-DD
   const addDays = (date, days) => new Date(date.getTime() + days * 86400000);
 
-  // 상세 API 호출
   // newChallengeId 변경 시 상세 API 호출
   useEffect(() => {
     if (!newChallengeId) {
-      setDetailData(null); // ID가 null이면(닫기) 상세 데이터 비우기
+      setDetailData(null);
       return;
     }
 
     // ID가 생기면 상세 API 호출
     (async () => {
       try {
-        // setIsDetailLoading(true);
-
         const data = await challengeDetailApi(newChallengeId);
-        setDetailData(data); // API 응답 state에 저장
+        setDetailData(data);
       } catch (err) {
         console.log('챌린지 상세 API 호출 실패', err);
         // finally {
@@ -181,7 +173,7 @@ const CreateChallengePage = () => {
         // }
       }
     })();
-  }, [newChallengeId]); // newChallengeId가 바뀔 때마다 실행
+  }, [newChallengeId]);
 
   // 챌린지 생성 핸들러
   const handleCreateClick = async (e) => {
@@ -190,11 +182,9 @@ const CreateChallengePage = () => {
     if (!isActive || isSubmitting) return;
 
     const entryFeeNum = Number(String(fee).replace(/,/g, '').trim() || 0);
-    // const { isNDays, n } = parseWeeklyFreq(frequency);
     const start = new Date();
     const end = addDays(start, Number(durationWeeks) * 7);
 
-    // freq_type, freq_n_days
     let freqTypeToSend = null;
     let freqNDaysToSend = null;
 

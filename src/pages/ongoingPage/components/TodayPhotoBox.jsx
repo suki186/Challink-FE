@@ -2,12 +2,12 @@ import s from './style/TodayPhotoBox.module.scss';
 import MY from '@assets/images/icons/my_icon.svg';
 import useAuthStore from '../../../store/authStore';
 
-const TodayPhotoBox = ({ name, src, userId }) => {
+const TodayPhotoBox = ({ name, src, userId, onClick }) => {
   const currentUserId = useAuthStore((state) => state.userId);
   const isCurrentUser = currentUserId && userId === currentUserId;
 
   return (
-    <div className={s.todayPhotoBox}>
+    <div className={s.todayPhotoBox} onClick={onClick}>
       <img src={src} alt="인증된 사진" className={s.photo} />
       <div className={s.nameBox}>
         <p className={isCurrentUser ? s.myName : ''}>{isCurrentUser ? 'MY' : name}</p>

@@ -9,6 +9,7 @@ import AllChallenge from './components/AllChallengeBig.jsx';
 import useNavigation from '../../hooks/useNavigation.js';
 import useModalStore from '../../store/modalStore';
 import ChallengeModal from '@components/challengeModal/ChallengeModal';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 
 const pageCategories = ['전체', '운동', '식습관', '생활', '기타'];
 
@@ -93,7 +94,7 @@ const ExploreChallengePage = () => {
         />
 
         {isLoading ? (
-          <p>로딩 중...</p>
+          <LoadingSpinner />
         ) : hasResults ? (
           <AllChallenge challenges={finalItemsToShow} onCardClick={handleCardClick} />
         ) : (

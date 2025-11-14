@@ -3,13 +3,20 @@ import { Outlet, useParams } from 'react-router-dom';
 import s from './ChallengeLayout.module.scss';
 import ChallengeTitle from './components/ChallengeTitle.jsx';
 import { challengeDetailApi } from '../../apis/auth/challengeApi.js';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 
 // 챌린지 상세 데이터의 부제목
 const createSubtitle = (data) => {
   if (!data) return '...';
   const fee = data.entry_fee ? data.entry_fee.toLocaleString('ko-KR') : 0;
   const weeks = data.duration_weeks || 0;
-  const freq = data.freq_type || '알 수 없음';
+
+  let freq;
+  if (data.freq_n_days) {
+    freq = `주 ${data.freq_n_days}일`;
+  } else {
+    freq = data.freq_type || '알 수 없음';
+  }
 
   return `${fee}p 걸고 ${weeks}주 동안 ${freq} 인증하기!`;
 };
@@ -47,7 +54,7 @@ const ChallengeLayout = () => {
   if (loading) {
     return (
       <div className={s.challengePageContainer} style={{ color: '#FFF', textAlign: 'center' }}>
-        불러오는 중...
+        <LoadingSpinner />
       </div>
     );
   }

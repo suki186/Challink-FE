@@ -5,11 +5,13 @@ import useModalStore from '../../../store/modalStore';
 import s from './styles/AllChallenge.module.scss';
 import chevron from '@assets/images/chevron_right_icon.svg';
 import DefaultPhoto from '@assets/images/no_photo.png';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 
 const AllChallenge = () => {
   const { goTo } = useNavigation();
   const openModal = useModalStore((state) => state.openModal);
   const [list, setList] = useState({ items: [] });
+  const [isLoading, setIsLoading] = useState(true);
 
   // 챌린지 목록 불러오기
   useEffect(() => {
@@ -20,6 +22,9 @@ const AllChallenge = () => {
         setList(result);
       } catch (err) {
         console.error('챌린지 목록 로딩 실패:', err);
+        setList({ items: [] });
+      } finally {
+        setIsLoading(false);
       }
     })();
   }, []);
@@ -51,7 +56,9 @@ const AllChallenge = () => {
       </header>
 
       <div className={s.challengeList}>
-        {list.items.length === 0 ? (
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : list.items.length === 0 ? (
           <p className={s.emptyText}>등록된 챌린지가 없습니다.</p>
         ) : (
           list.items.map((c) => (

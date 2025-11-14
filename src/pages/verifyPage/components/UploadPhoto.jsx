@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import heic2any from 'heic2any';
 import s from './style/UploadPhoto.module.scss';
 import GradientButton from '../../../components/GradientButton';
 import CHAR from '@assets/images/character.png';
@@ -6,8 +7,11 @@ import Bubble from './Bubble';
 import { verifyChallengePhotoApi } from '../../../apis/challenge/verify';
 import Popup from '../../../components/Popup';
 import AiLoadingBox from './AiLoadingBox';
+import useNavigation from '../../../hooks/useNavigation';
 
 const UploadPhoto = ({ challengeId }) => {
+  const { goTo } = useNavigation();
+
   const [photo, setPhoto] = useState(null); // 업로드 사진
   const fileInputRef = useRef(null);
 
@@ -29,18 +33,46 @@ const UploadPhoto = ({ challengeId }) => {
     setIsLoading(true);
     setPopupInfo(null);
 
-    // 사진 프리뷰 생성
-    if (photo) {
-      URL.revokeObjectURL(photo);
-    }
-    setPhoto(URL.createObjectURL(file));
+    // API 전송용 파일
+    const fileForApi = file;
 
+    // 미리보기용 Blob
+    let blobForPreview = file;
+
+    const fileName = file.name.toLowerCase();
+    const isHeic = fileName.endsWith('.heic') || fileName.endsWith('.heif');
+
+    if (isHeic) {
+      try {
+        console.log('HEIC 파일 프리뷰 변환 시작');
+        const conversionResult = await heic2any({
+          blob: file, // 원본 HEIC
+          toType: 'image/jpeg',
+          quality: 0.8,
+        });
+
+        const convertedBlob = Array.isArray(conversionResult)
+          ? conversionResult[0]
+          : conversionResult;
+
+        blobForPreview = convertedBlob;
+
+        console.log('HEIC 프리뷰 변환 성공.');
+      } catch (err) {
+        console.error('HEIC 프리뷰 변환 실패:', err);
+      }
+    }
+
+    const localPreviewUrl = URL.createObjectURL(blobForPreview);
+    setPhoto(localPreviewUrl);
+
+    // 인증 API 호출
     try {
       if (!challengeId) {
-        throw new Error('Challenge ID가 없습니다.');
+        throw new Error('Challenge ID 없음');
       }
 
-      const responseData = await verifyChallengePhotoApi(challengeId, file);
+      const responseData = await verifyChallengePhotoApi(challengeId, fileForApi);
 
       // API 응답에 따라 팝업 상태 설정
       if (responseData.approved) {
@@ -50,6 +82,12 @@ const UploadPhoto = ({ challengeId }) => {
           title: '인증 성공!',
           subtitle: `도전하는 당신, 정말 대단해요 🙌`,
         });
+
+        const backendImageUrl = responseData.imageUrl;
+
+        if (backendImageUrl) {
+          setPhoto(backendImageUrl);
+        }
       } else {
         // [인증 실패]
         setPopupInfo({
@@ -83,6 +121,11 @@ const UploadPhoto = ({ challengeId }) => {
   // 팝업 닫기
   const handlePopupClose = () => {
     setPopupInfo(null);
+
+    // 성공하면 챌린지 상세 페이지로 이동
+    if (popupInfo?.type === 'success') {
+      goTo(`/challenge/${challengeId}`);
+    }
   };
 
   return (
@@ -127,7 +170,7 @@ const UploadPhoto = ({ challengeId }) => {
       {/* 숨겨진 파일 첨부 input */}
       <input
         type="file"
-        accept="image/*"
+        accept="image/*,image/heic,image/heif"
         ref={fileInputRef}
         style={{ display: 'none' }}
         onChange={handlePhotoUpload}

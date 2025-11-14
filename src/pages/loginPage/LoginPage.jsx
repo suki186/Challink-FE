@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import { CheckIcon, CheckFillIcon } from './components/icon/index';
 import AuthButton from '../../components/AuthButton';
 import useAuthStore from '../../store/authStore';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const LoginPage = () => {
   const { goTo } = useNavigation();
@@ -31,12 +32,12 @@ const LoginPage = () => {
   // 에러/로딩 상태
   const [apiError, setApiError] = useState('');
   const [invalidError, setInvalidError] = useState('');
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleButtonClick = async (e) => {
     e.preventDefault();
     try {
-      // setLoading(true);
+      setLoading(true);
       const result = await loginUserApi(form);
       console.log('로그인 성공');
       // 스토어에 액세스 토큰 저장
@@ -61,10 +62,19 @@ const LoginPage = () => {
       } else {
         setApiError('인터넷 연결을 확인해주세요.');
       }
-      // } finally {
-      //   setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header />

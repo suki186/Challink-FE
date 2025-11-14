@@ -10,6 +10,7 @@ import { formatDateToDots } from '../../../utils/format';
 import { createPhotoCommentApi, getPhotoDetailApi } from '../../../apis/challenge/albums';
 import { getFullImagePath } from '../../../utils/imagePath';
 import NOPHOTO from '@assets/images/no_photo.png';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 
 const PhotoDetail = ({ photo, onClose }) => {
   const { id: photoId } = photo;
@@ -88,6 +89,14 @@ const PhotoDetail = ({ photo, onClose }) => {
   const newCommentStyleProps = calculateStyleProps(clickedPos, 'input');
   if (newCommentStyleProps) {
     newCommentStyleProps.zIndex = 10000;
+  }
+
+  if (isLoadingComments) {
+    return (
+      <div className={s.photoDetailContainer}>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   return (

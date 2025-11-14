@@ -20,4 +20,8 @@
     height: 356px;
     margin-bottom: 28px;
   }
+
+  .Buttons {
+    @include m.flex-row-center(center, center, 8px);
+  }
 }
